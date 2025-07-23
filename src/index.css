@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+
+@keyframes slide-corner {
+  0% { transform: translate(0,0); opacity: 1; }
+  100% { transform: translate(-10px,-10px); opacity: 0; }
+}
