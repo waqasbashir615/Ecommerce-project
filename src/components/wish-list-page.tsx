@@ -65,14 +65,14 @@ const WishListPage = () => {
       <main className="flex-grow container mx-auto py-8">
         <div className="max-w-7xl mx-auto">
           {/* Back Button */}
-          <Button
+          {/* <Button
             onClick={handleClick}
             variant="ghost"
             className="mb-6 hover:bg-gray-100 transition-colors"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Shop
-          </Button>
+          </Button> */}
 
           {/* Title Section */}
           <div className="text-center mb-10">

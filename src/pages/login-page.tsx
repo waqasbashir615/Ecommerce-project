@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { login } from "@/store/slice/auth";
 import { useLoginUserMutation } from "@/store/services/fake-store-api";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -74,10 +73,12 @@ const LoginPage = () => {
     setLoading(true);
 
     try {
+      console.log("before api")
       const response = await loginUser({
         username: formData.email,
         password: formData.password,
       }).unwrap();
+      console.log("response is ",response)
 
       dispatch(login(response.token));
       toast.success("Login successful!");
@@ -178,3 +179,7 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+function login(token: string): any {
+  throw new Error("Function not implemented.");
+}
+

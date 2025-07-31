@@ -16,7 +16,12 @@ import {
   Star,
   Clock,
   Settings,
+  Languages,
+  icons,
+  Users,
 } from "lucide-react";
+import { Link } from "react-router-dom";
+import GenBreadcrumb from "./generic-components/gen-breadcrumb";
 
 const tabs = [
   { value: "overview", label: "Overview", icon: User },
@@ -28,8 +33,16 @@ const tabs = [
 
 const UserProfile = () => {
   return (
-    <div className="container mx-auto px-4 sm:px-6 py-10 bg-gray-50">
-      <h1 className="pb-6 flex items-center justify-center gap-2 text-3xl sm:text-4xl font-semibold text-black mb-4">
+    <div className="container mx-auto px-4 sm:px-6 py-6 bg-gray-50 h-screen">
+      <div className="ps-6">
+        <GenBreadcrumb
+          items={[
+            { label: "Home", to: "/main" },
+            { label: "Profile" }, // current page
+          ]}
+        />
+      </div>
+      <h1 className="pb-3 flex items-center justify-center gap-2 text-2xl sm:text-3xl font-semibold text-black mb-4">
         <User className="w-6 h-6" />
         User Profile
       </h1>
@@ -77,12 +90,6 @@ const UserProfile = () => {
                     >
                       <Star className="w-3 h-3" /> Premium Member
                     </Badge>
-                    <Badge
-                      variant="outline"
-                      className="border-green-500 text-green-600 px-3 py-1 text-sm"
-                    >
-                      Verified
-                    </Badge>
                   </div>
                 </div>
               </div>
@@ -90,21 +97,18 @@ const UserProfile = () => {
                 <div>
                   <h3 className="text-lg font-semibold mb-2 flex items-center gap-2 text-gray-700">
                     <Star className="w-5 h-5 text-yellow-500" /> Profile
-                    Completion
-                  </h3>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-medium text-gray-600">
+                    Completion <span className="text-sm font-medium text-gray-600">
                       85%
                     </span>
-                    <Progress value={85} className="h-2 rounded-full" />
-                  </div>
+                  </h3>
+
                   <p className="text-sm text-gray-500">
                     Complete your profile to unlock all features and enjoy a
                     personalized experience.
                   </p>
                 </div>
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mt-6">
+              {/* <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mt-6">
                 {[
                   { icon: ShoppingCart, label: "Orders", value: "24" },
                   { icon: Heart, label: "Wishlist", value: "8" },
@@ -128,6 +132,87 @@ const UserProfile = () => {
                     </div>
                   </div>
                 ))}
+              </div> */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                {[
+                  {
+                    icon: ShoppingCart,
+                    label: "Orders",
+                    value: "24",
+                    color: "text-blue-600",
+                    bgColor: "bg-blue-50"
+                  },
+                  {
+                    icon: Heart,
+                    label: "Wishlist",
+                    value: "8",
+                    color: "text-pink-600",
+                    bgColor: "bg-pink-50"
+                  },
+                  {
+                    icon: Star,
+                    label: "Reviews",
+                    value: "5",
+                    color: "text-amber-500",
+                    bgColor: "bg-amber-50"
+                  },
+                  {
+                    icon: User,
+                    label: "Member Since",
+                    value: "2022",
+                    color: "text-purple-600",
+                    bgColor: "bg-purple-50"
+                  },
+                ].map(({ icon: Icon, label, value, color, bgColor }) => (
+                  <div
+                    key={label}
+                    className={`
+                      group relative overflow-hidden
+                      bg-white border border-gray-100
+                      rounded-xl shadow-sm hover:shadow-md
+                      transition-all duration-300 ease-in-out
+                      hover:-translate-y-1
+                      flex flex-col items-center justify-center
+                      p-5 h-full
+                      ${bgColor}
+                    `}
+                  >
+                    {/* Animated background effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white to-gray-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                    <div className="relative z-10 flex flex-col items-center w-full">
+                      {/* Icon with color transition */}
+                      <div className={`
+                      mb-3 p-3 rounded-full 
+                      transition-colors duration-300
+                      ${bgColor.replace('50', '100')}
+                      group-hover:${bgColor.replace('50', '200')}
+                    `}>
+                        <Icon className={`w-6 h-6 ${color}`} />
+                      </div>
+
+                      {/* Value with scaling animation */}
+                      <div className="text-3xl font-bold text-gray-800 mb-1 transition-transform duration-300 group-hover:scale-105">
+                        {value}
+                      </div>
+
+                      {/* Label with subtle animation */}
+                      <div className="text-sm font-medium text-gray-500 tracking-wide transition-all duration-300 group-hover:text-gray-700">
+                        {label}
+                      </div>
+                    </div>
+
+                    {/* Subtle border animation on hover */}
+                    <div className={`
+                    absolute inset-0 rounded-xl
+                    border-2 border-transparent
+                    group-hover:border-opacity-30
+                    transition-all duration-300
+                    pointer-events-none
+                    ${color.replace('text', 'border')}
+                  `}></div>
+                  </div>
+                ))}
               </div>
             </div>
           </TabsContent>
@@ -138,12 +223,12 @@ const UserProfile = () => {
                 <h3 className="text-xl font-semibold text-gray-900">
                   Personal Information
                 </h3>
-                <Button
+                {/* <Button
                   variant="outline"
                   className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 transition"
                 >
                   <Pencil className="w-4 h-4" /> Edit
-                </Button>
+                </Button> */}
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-6">
@@ -183,6 +268,17 @@ const UserProfile = () => {
                         </div>
                       ),
                     },
+                    {
+                      icon: Languages,
+                      label: "Language",
+                      content: (
+                        <div className="bg-gray-50 p-3 rounded-md shadow-sm">
+                          <p className="font-medium text-gray-700">
+                            Englsih
+                          </p>
+                        </div>
+                      ),
+                    },
                   ].map(({ icon: Icon, label, content }) => (
                     <div key={label}>
                       <Label className="flex items-center gap-2 mb-2 text-sm font-semibold text-gray-600">
@@ -215,6 +311,7 @@ const UserProfile = () => {
                       ),
                     },
                     {
+                      icon: Users,
                       label: "Gender",
                       content: (
                         <div className="bg-gray-50 p-3 rounded-md shadow-sm">
@@ -222,14 +319,7 @@ const UserProfile = () => {
                         </div>
                       ),
                     },
-                    {
-                      label: "Language",
-                      content: (
-                        <div className="bg-gray-50 p-3 rounded-md shadow-sm">
-                          <p className="font-medium text-gray-700">English</p>
-                        </div>
-                      ),
-                    },
+
                   ].map(({ icon: Icon, label, content }) => (
                     <div key={label}>
                       <Label className="flex items-center gap-2 mb-2 text-sm font-semibold text-gray-600">
@@ -251,21 +341,21 @@ const UserProfile = () => {
               {[
                 {
                   icon: ShoppingCart,
-                  color: "bg-blue-100 text-blue-600",
+                  color: "bg-gray-100 text-black",
                   title: "New order placed",
                   desc: "Order #12345 - July 15, 2023",
                   status: "Completed",
                 },
                 {
                   icon: Star,
-                  color: "bg-green-100 text-green-600",
+                  color: "bg-gray-100 text-black",
                   title: "Review submitted",
                   desc: "5 stars for 'Premium Headphones'",
                   date: "July 10, 2023",
                 },
                 {
                   icon: Heart,
-                  color: "bg-purple-100 text-purple-600",
+                  color: "bg-gray-100 text-black",
                   title: "Added to wishlist",
                   desc: "Wireless Earbuds Pro",
                   date: "July 5, 2023",
@@ -304,12 +394,14 @@ const UserProfile = () => {
                 <h3 className="text-xl font-semibold text-gray-900">
                   Customer Ratings
                 </h3>
-                <Button
-                  variant="outline"
-                  className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 transition whitespace-nowrap"
-                >
-                  <Star className="w-4 h-4" /> See All Reviews
-                </Button>
+                <Link to="/review-pages">
+
+                  <a
+                    className="flex items-center gap-2 px-4 py-2 border rounded-lg hover:bg-gray-800 hover:text-white transition whitespace-nowrap"
+                  >
+                    <Star className="w-4 h-4" /> See All Reviews
+                  </a>
+                </Link>
               </div>
               <div className="flex flex-col md:flex-row items-center md:items-start mb-6">
                 <div className="text-center md:text-left mb-4 md:mb-0">
@@ -320,11 +412,10 @@ const UserProfile = () => {
                     {[1, 2, 3, 4, 5].map((i) => (
                       <Star
                         key={i}
-                        className={`w-6 h-6 ${
-                          i <= 4
-                            ? "text-yellow-400 fill-yellow-400"
-                            : "text-gray-300"
-                        }`}
+                        className={`w-6 h-6 ${i <= 4
+                          ? "text-yellow-400 fill-yellow-400"
+                          : "text-gray-300"
+                          }`}
                       />
                     ))}
                   </div>
@@ -372,11 +463,10 @@ const UserProfile = () => {
                           {[1, 2, 3, 4, 5].map((i) => (
                             <Star
                               key={i}
-                              className={`w-4 h-4 ${
-                                i <= rating
-                                  ? "text-yellow-400 fill-yellow-400"
-                                  : "text-gray-300"
-                              }`}
+                              className={`w-4 h-4 ${i <= rating
+                                ? "text-yellow-400 fill-yellow-400"
+                                : "text-gray-300"
+                                }`}
                             />
                           ))}
                         </div>
@@ -401,19 +491,19 @@ const UserProfile = () => {
                   icon: Mail,
                   title: "Email Address",
                   subtitle: "waqasb711@gmail.com",
-                  color: "bg-blue-100 text-blue-600",
+                  color: "bg-gray-100 text-black",
                 },
                 {
                   icon: Phone,
                   title: "Phone Number",
                   subtitle: "+92-308-6996619",
-                  color: "bg-green-100 text-green-600",
+                  color: "bg-gray-100 text-black",
                 },
                 {
                   icon: Settings,
                   title: "Password",
                   subtitle: "Last changed 3 months ago",
-                  color: "bg-purple-100 text-purple-600",
+                  color: "bg-gray-100 text-black",
                 },
               ].map(({ icon: Icon, title, subtitle, color }, idx) => (
                 <div

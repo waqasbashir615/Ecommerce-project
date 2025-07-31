@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "./ui/button";
-import { Loader2 } from "lucide-react";
-import { FaHeart } from "react-icons/fa";
-import { CiHeart, CiShare2 } from "react-icons/ci";
+import { Heart, Loader2 } from "lucide-react";
 import { useGetProductsQuery } from "@/store/services/fake-store-api";
 import CartDialog from "./cart-dialog";
 import EditCartForm from "./edit-cart-form";
@@ -64,34 +62,26 @@ const Trending = () => {
                   }}
                 />
                 {/* Action Icons */}
-                <div className="absolute h-auto top-0 left-3 gap-4 pt-5 grid items-center justify-center z-10 bg-opacity-50 text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  {likedItems[product.id] ? (
-                    <FaHeart
-                      className="text-red-500 text-lg cursor-pointer transition-colors"
-                      onClick={() =>
-                        setLikedItems((prev) => ({
-                          ...prev,
-                          [product.id]: false,
-                        }))
-                      }
-                    />
-                  ) : (
-                    <CiHeart
-                      className="text-black text-lg cursor-pointer transition-colors"
-                      onClick={() =>
-                        setLikedItems((prev) => ({
-                          ...prev,
-                          [product.id]: true,
-                        }))
-                      }
-                    />
-                  )}
-                  <CiShare2 className="text-black text-lg cursor-pointer" />
+                <div
+                  className="absolute top-2 left-2 gap-4 pt-2 grid items-center justify-center z-10 bg-opacity-50 text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                  <Heart
+                    className={`w-4 h-4 cursor-pointer ${likedItems[product.id]
+                        ? "text-red-500 fill-red-500"
+                        : "text-black fill-transparent"
+                      }`}
+                    onClick={() =>
+                      setLikedItems((prev) => ({
+                        ...prev,
+                        [product.id]: !prev[product.id],
+                      }))
+                    }
+                  />
                 </div>
 
                 {/* Quick View & Add to Cart */}
                 <div className="grid justify-center absolute bottom-1/3 left-0 right-0 gap-2 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                   <CartDialog
+                  <CartDialog
                     triggerLabel="Quick View"
                     buttonBg="bg-black text-white hover:bg-gray-800"
                   >
@@ -139,7 +129,7 @@ const Trending = () => {
 
       {/* Banner Section */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mt-7">
-        <div className="md:col-span-6 overflow-hidden cursor-pointer">
+        <div className="md:col-span-6 overflow-hidden">
           <div className="relative group">
             <img
               src={IMAGES.BANNER1}
@@ -156,7 +146,7 @@ const Trending = () => {
             </div>
           </div>
         </div>
-        <div className="md:col-span-6 overflow-hidden cursor-pointer">
+        <div className="md:col-span-6 overflow-hidden">
           <div className="relative group h-full">
             <img
               src={IMAGES.BANNER2}

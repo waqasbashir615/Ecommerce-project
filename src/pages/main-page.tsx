@@ -7,20 +7,20 @@ import LatestBlogs from "@/components/latest-blogs";
 import FollowUs from "@/components/follow-us";
 import Services from "@/components/services";
 import Footer from "@/components/footer";
-import WishListPage from "@/components/wish-list-page";
-import { useNavigate } from "react-router-dom";
+// import WishListPage from "@/components/wish-list-page";
+// import { useNavigate } from "react-router-dom";
 // import ApiIntegrationPract from "@/c omponents/api-integration-pract";
 
 const Mainpage = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const goToWishlist = () => {
-    navigate("/wishlist");
-  };
+  // const goToWishlist = () => {
+  //   navigate("/wishlist");
+  // };
   return (
     <div className="bg-white">
       <NavBarTop />
-      <button onClick={goToWishlist}>Go to Wishlist</button>
+      {/* <button onClick={goToWishlist}>Go to Wishlist</button> */}
       <HeroSection />
       <div className="w-full p-5 lg:p-0 lg:w-[70%] mx-auto ">
         <Cetagories />
@@ -34,9 +34,9 @@ const Mainpage = () => {
       </div>
       <Footer />
       {/* <ApiIntegrationPract/> */}
-      <div className="w-full p-5 lg:p-0  mx-auto">
+      {/* <div className="w-full p-5 lg:p-0  mx-auto">
         <WishListPage />
-      </div>
+      </div> */}
     </div>
   );
 };

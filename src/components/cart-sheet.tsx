@@ -1,4 +1,3 @@
-import { FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import {
   Sheet,
@@ -13,8 +12,8 @@ import {
   useGetProductsQuery,
   useDeleteProductMutation,
 } from "@/store/services/fake-store-api";
-import { Loader2 } from "lucide-react";
 import { useState } from "react";
+import { Trash } from "lucide-react";
 
 interface CartSheetProps {
   children: React.ReactNode;
@@ -22,26 +21,10 @@ interface CartSheetProps {
 }
 
 const CartSheet = ({ children }: CartSheetProps) => {
-  const [deleteProduct, { isLoading: isDeleting }] = useDeleteProductMutation();
-  const { data: products, isLoading, isError } = useGetProductsQuery();
+  const [deleteProduct] = useDeleteProductMutation();
+  const { data: products } = useGetProductsQuery();
   const [visibleCount] = useState(10);
-  const [deletedIds, setDeletedIds] = useState<number[]>([]); // 👈 Track deleted products locally
-
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-40">
-        <Loader2 className="w-6 h-6 animate-spin" />
-      </div>
-    );
-  }
-
-  if (isError || !products) {
-    return (
-      <p className="text-center text-red-500 font-semibold">
-        Failed to load products.
-      </p>
-    );
-  }
+  const [deletedIds, setDeletedIds] = useState<number[]>([]);
 
   const handleDelete = async (id: number, title: string) => {
     const confirmDelete = window.confirm(
@@ -50,10 +33,7 @@ const CartSheet = ({ children }: CartSheetProps) => {
     if (!confirmDelete) return;
 
     try {
-      const response = await deleteProduct(id).unwrap();
-      console.log("Deleted product response:", response);
-
-      // Simulate deletion in frontend
+      await deleteProduct(id).unwrap();
       setDeletedIds((prev) => [...prev, id]);
     } catch (error) {
       alert("Failed to delete product.");
@@ -61,8 +41,7 @@ const CartSheet = ({ children }: CartSheetProps) => {
     }
   };
 
-  // Filter out "deleted" items from UI
-  const visibleProducts = products
+  const visibleProducts = (products || [])
     .filter((product) => !deletedIds.includes(product.id))
     .slice(0, visibleCount);
 
@@ -97,15 +76,11 @@ const CartSheet = ({ children }: CartSheetProps) => {
                 className="text-gray-500 hover:text-red-500"
                 size="icon"
                 variant="ghost"
-                disabled={isDeleting}
                 onClick={() => handleDelete(product.id, product.title)}
               >
-                {isDeleting ? (
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                ) : (
-                  <FaTimes />
-                )}
+                <Trash/>
               </Button>
+              
             </div>
           ))}
         </div>

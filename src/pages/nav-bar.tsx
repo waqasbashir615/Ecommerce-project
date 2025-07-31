@@ -5,7 +5,7 @@ import SearchSheet from "../components/search-sheet";
 import WishlistSheet from "../components/login-sheet";
 import CartSheet from "../components/cart-sheet";
 
-const Navbar = () => {
+const NavBarTop = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -115,4 +115,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavBarTop;

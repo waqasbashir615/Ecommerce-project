@@ -1,30 +1,43 @@
 import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 
-type AuthState = {
-  isLoggedIn: boolean;
+// ✅ Define user type (you can customize fields as needed)
+export interface UserType {
+  id: string;
+  name: string;
+  email: string;
+}
+
+// ✅ Auth state interface
+export interface AuthState {
   token: string | null;
-};
+  user: UserType | null;
+}
 
+// ✅ Initial state
 const initialState: AuthState = {
-  isLoggedIn: false,
   token: null,
+  user: null,
 };
 
+// ✅ Create slice
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    // ✅ Fix here: receive token
-    login: (state, action) => {
-      state.isLoggedIn = true;
-      state.token = action.payload; 
+    setToken: (state, action: PayloadAction<string | null>) => {
+      state.token = action.payload;
+    },
+    setUser: (state, action: PayloadAction<UserType | null>) => {
+      state.user = action.payload;
     },
     logout: (state) => {
-      state.isLoggedIn = false;
       state.token = null;
+      state.user = null;
     },
   },
 });
 
-export const { login, logout } = authSlice.actions;
+// ✅ Export actions and reducer
+export const { setToken, setUser, logout } = authSlice.actions;
 export default authSlice.reducer;

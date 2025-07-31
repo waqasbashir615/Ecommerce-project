@@ -27,7 +27,7 @@ const CartDialog = ({
     <Dialog>
       <DialogTrigger asChild>
         <Button
-          className={`${buttonBg} py-1 text-md font-medium transition-colors rounded-full`}
+          className={`${buttonBg} py-1 text-md font-medium transition-colors rounded-full border border-gray-300 hover:bg-black hover:text-white cursor-pointer`}
         >
           {triggerLabel}
         </Button>

@@ -57,7 +57,7 @@ const AddCartForm = ({ product }: AddCartFormProps) => {
           </Button>
         </div>
         <Button className="border border-black text-black hover:bg-black hover:text-white hover:border-black">
-          ADD TO CART
+          ADD TO CART 
         </Button>
         <Button
           variant="outline"
