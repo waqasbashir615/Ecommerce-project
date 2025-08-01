@@ -23,16 +23,15 @@ const Categories = () => {
             <span className="absolute inset-0 bg-black translate-y-full group-hover/button:translate-y-0 transition-transform duration-500" />
           </Button>
         </div>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Electronics */}
-          <div className="gap-4 flex flex-col">
+          <div className="gap-4 flex flex-col justify-between">
             <div
               onClick={() => navigate("/electronics")}
               className="relative group rounded-lg overflow-hidden min-h-[200px] cursor-pointer"
             >
               <img
-                src={IMAGES.BAG}
+                src={IMAGES.HEADPHONE}
                 alt="Electronics"
                 className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
               />
@@ -41,7 +40,6 @@ const Categories = () => {
                 <span className="absolute inset-0 bg-black translate-y-full group-hover/button:translate-y-0 transition-transform duration-500" />
               </Button>
             </div>
-
             {/* Jawellary */}
             <div
               onClick={() => navigate("/jawellary")}
@@ -58,7 +56,6 @@ const Categories = () => {
               </Button>
             </div>
           </div>
-
           {/* Men's Clothing */}
           <div
             onClick={() => navigate("/mens-clothing")}

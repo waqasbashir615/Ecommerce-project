@@ -5,6 +5,7 @@ import img5 from "./img5.jpg";
 import girl from "./girl.webp";
 import bag from "./bag.avif";
 import watch from "./watch.jpg";
+import Headphone from "./watch.png";
 import shoes from "./shoes.jpg";
 import troser1 from "./troser1.webp";
 import troser2 from "./troser2.webp";
@@ -71,6 +72,7 @@ const IMAGES: ImageMap = {
   GOOGLEPAY: GooglePay,
   VISA: VisaCard,
   MASTER: MasterCard,
+  HEADPHONE:Headphone,
 };
 
 export default IMAGES;

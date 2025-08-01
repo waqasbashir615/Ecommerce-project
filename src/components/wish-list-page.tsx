@@ -65,7 +65,7 @@ const WishListPage = () => {
           {/* Title Section */}
           <div className="text-center mb-10">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-              Your Wishlist 1122
+              Your Wishlist
             </h1>
             <p className="text-gray-500 max-w-md mx-auto">
               {filteredProducts.length > 0
@@ -73,16 +73,11 @@ const WishListPage = () => {
                 : "Your wishlist is currently empty"}
             </p>
           </div>
-
-          {/* Breadcrumb + Search */}
           <div className="flex flex-col lg:flex-row justify-between items-center gap-4 mb-8">
             <div>
-            {/* Breadcrumb */}
+              {/* Breadcrumb */}
               <GenBreadcrumb
-                items={[
-                  { label: "Home", to: "/main" },
-                  { label: "Wishlist" }, // current page
-                ]}
+                items={[{ label: "Home", to: "/main" }, { label: "Wishlist" }]}
               />
             </div>
             <div className="relative w-full max-w-md">
@@ -109,8 +104,6 @@ const WishListPage = () => {
               </svg>
             </div>
           </div>
-
-          {/* Products Grid */}
           {filteredProducts.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-20">
               <FaHeart className="h-16 w-16 text-gray-300 mb-4" />
@@ -160,8 +153,6 @@ const WishListPage = () => {
                           <CiHeart className=" text-gray-700" />
                         )}
                       </button>
-
-                      {/* Quick View & Add to Cart */}
                       <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div className="flex gap-2 justify-center">
                           <CartDialog
@@ -176,7 +167,6 @@ const WishListPage = () => {
                         </div>
                       </div>
                     </div>
-
                     <div className="p-4">
                       <h3 className="font-medium text-gray-900 mb-1 line-clamp-2">
                         {product.title}
