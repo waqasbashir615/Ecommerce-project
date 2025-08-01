@@ -39,7 +39,7 @@ const policyPoints = [
 
 const EasyReturns = () => {
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen hide-scrollbar h-screen overflow-y-scroll">
             <NavBarTop />
             <div className="px-4 py-4 sm:px-6 sm:py-6 md:px-10 md:py-8 lg:px-14 lg:pt-10">
                 <GenBreadcrumb

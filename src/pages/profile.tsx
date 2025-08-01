@@ -2,7 +2,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import {
   Pencil,
@@ -17,7 +16,6 @@ import {
   Clock,
   Settings,
   Languages,
-  icons,
   Users,
 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -33,7 +31,7 @@ const tabs = [
 
 const UserProfile = () => {
   return (
-    <div className="container mx-auto px-4 sm:px-6 py-6 bg-gray-50 h-screen">
+    <div className="mx-auto px-4 sm:px-6 py-6 bg-gray-50 hide-scrollbar h-screen overflow-y-scroll">
       <div className="ps-6">
         <GenBreadcrumb
           items={[
@@ -42,14 +40,14 @@ const UserProfile = () => {
           ]}
         />
       </div>
-      <h1 className="pb-3 flex items-center justify-center gap-2 text-2xl sm:text-3xl font-semibold text-black mb-4">
+      <h1 className="flex items-center justify-center gap-2 text-2xl sm:text-3xl font-semibold text-black mb-4">
         <User className="w-6 h-6" />
         User Profile
       </h1>
       <div className="w-full px-4 sm:px-6 lg:w-[70%] mx-auto">
         <Tabs defaultValue="overview" className="w-full space-y-6">
           <div className="overflow-x-auto">
-            <TabsList className="flex w-max gap-2 px-2 sm:grid sm:grid-cols-5 sm:w-full">
+            <TabsList className="flex w-max gap-2 sm:grid sm:grid-cols-5 sm:w-full">
               {tabs.map(({ value, label, icon: Icon }) => (
                 <TabsTrigger
                   key={value}
@@ -64,7 +62,7 @@ const UserProfile = () => {
           </div>
 
           <TabsContent value="overview">
-            <div className="bg-white rounded-lg shadow-md p-8 space-y-8">
+            <div className="bg-white rounded-lg shadow-md p-6 space-y-8">
               <div className="flex flex-col md:flex-row items-center md:items-start md:justify-between space-y-4 md:space-y-0 md:space-x-6">
                 <div className="relative">
                   <Avatar className="h-32 w-32 mx-auto md:mx-0 shadow-lg hover:scale-105 transition-transform duration-300">
@@ -83,10 +81,10 @@ const UserProfile = () => {
                   <h2 className="text-3xl font-bold mb-2 text-gray-900">
                     Malik Waqas Bashir
                   </h2>
-                  <div className="flex flex-col justify-end  items-end gap-3 flex-wrap">
+                  <div className="flex flex-col flex-wrap">
                     <Badge
                       variant="secondary"
-                      className="flex items-center gap-2 px-3 py-1 text-sm"
+                      className="flex items-center gap-2 py-1 text-sm px-0"
                     >
                       <Star className="w-3 h-3" /> Premium Member
                     </Badge>
@@ -97,7 +95,8 @@ const UserProfile = () => {
                 <div>
                   <h3 className="text-lg font-semibold mb-2 flex items-center gap-2 text-gray-700">
                     <Star className="w-5 h-5 text-yellow-500" /> Profile
-                    Completion <span className="text-sm font-medium text-gray-600">
+                    Completion{" "}
+                    <span className="text-sm font-medium text-gray-600">
                       85%
                     </span>
                   </h3>
@@ -140,28 +139,28 @@ const UserProfile = () => {
                     label: "Orders",
                     value: "24",
                     color: "text-blue-600",
-                    bgColor: "bg-blue-50"
+                    bgColor: "bg-blue-50",
                   },
                   {
                     icon: Heart,
                     label: "Wishlist",
                     value: "8",
                     color: "text-pink-600",
-                    bgColor: "bg-pink-50"
+                    bgColor: "bg-pink-50",
                   },
                   {
                     icon: Star,
                     label: "Reviews",
                     value: "5",
                     color: "text-amber-500",
-                    bgColor: "bg-amber-50"
+                    bgColor: "bg-amber-50",
                   },
                   {
                     icon: User,
                     label: "Member Since",
                     value: "2022",
                     color: "text-purple-600",
-                    bgColor: "bg-purple-50"
+                    bgColor: "bg-purple-50",
                   },
                 ].map(({ icon: Icon, label, value, color, bgColor }) => (
                   <div
@@ -182,12 +181,14 @@ const UserProfile = () => {
 
                     <div className="relative z-10 flex flex-col items-center w-full">
                       {/* Icon with color transition */}
-                      <div className={`
+                      <div
+                        className={`
                       mb-3 p-3 rounded-full 
                       transition-colors duration-300
-                      ${bgColor.replace('50', '100')}
-                      group-hover:${bgColor.replace('50', '200')}
-                    `}>
+                      ${bgColor.replace("50", "100")}
+                      group-hover:${bgColor.replace("50", "200")}
+                    `}
+                      >
                         <Icon className={`w-6 h-6 ${color}`} />
                       </div>
 
@@ -203,14 +204,16 @@ const UserProfile = () => {
                     </div>
 
                     {/* Subtle border animation on hover */}
-                    <div className={`
+                    <div
+                      className={`
                     absolute inset-0 rounded-xl
                     border-2 border-transparent
                     group-hover:border-opacity-30
                     transition-all duration-300
                     pointer-events-none
-                    ${color.replace('text', 'border')}
-                  `}></div>
+                    ${color.replace("text", "border")}
+                  `}
+                    ></div>
                   </div>
                 ))}
               </div>
@@ -273,9 +276,7 @@ const UserProfile = () => {
                       label: "Language",
                       content: (
                         <div className="bg-gray-50 p-3 rounded-md shadow-sm">
-                          <p className="font-medium text-gray-700">
-                            Englsih
-                          </p>
+                          <p className="font-medium text-gray-700">Englsih</p>
                         </div>
                       ),
                     },
@@ -319,7 +320,6 @@ const UserProfile = () => {
                         </div>
                       ),
                     },
-
                   ].map(({ icon: Icon, label, content }) => (
                     <div key={label}>
                       <Label className="flex items-center gap-2 mb-2 text-sm font-semibold text-gray-600">
@@ -390,35 +390,39 @@ const UserProfile = () => {
 
           <TabsContent value="reviews">
             <div className="bg-white rounded-lg shadow-md p-8 space-y-6">
-              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <h3 className="text-xl font-semibold text-gray-900">
                   Customer Ratings
                 </h3>
                 <Link to="/review-pages">
-
-                  <a
-                    className="flex items-center gap-2 px-4 py-2 border rounded-lg hover:bg-gray-800 hover:text-white transition whitespace-nowrap"
-                  >
+                  <a className="flex items-center gap-2 px-4 py-2 border rounded-lg hover:bg-gray-800 hover:text-white transition whitespace-nowrap">
                     <Star className="w-4 h-4" /> See All Reviews
                   </a>
                 </Link>
               </div>
-              <div className="flex flex-col md:flex-row items-center md:items-start mb-6">
-                <div className="text-center md:text-left mb-4 md:mb-0">
-                  <div className="text-4xl font-bold text-gray-900 mb-2">
-                    4.8
+              <div className="flex flex-col md:flex-row items-center md:items-start">
+                <div className="text-center md:text-left  md:mb-0">
+                  <div className="flex justify-center items-center">
+                    <div className="flex gap-4 items-center">
+                      <span className="text-2xl font-bold text-gray-900">
+                        4.8
+                      </span>
+                      <span className="flex">
+                        {[1, 2, 3, 4, 5].map((i) => (
+                          <Star
+                            key={i}
+                            className={`w-6 h-6 ${
+                              i <= 4
+                                ? "text-yellow-400 fill-yellow-400"
+                                : "text-gray-300"
+                            }`}
+                          />
+                        ))}
+                      </span>
+                    </div>
                   </div>
-                  <div className="flex justify-center md:justify-start gap-1">
-                    {[1, 2, 3, 4, 5].map((i) => (
-                      <Star
-                        key={i}
-                        className={`w-6 h-6 ${i <= 4
-                          ? "text-yellow-400 fill-yellow-400"
-                          : "text-gray-300"
-                          }`}
-                      />
-                    ))}
-                  </div>
+
+                  <div className="flex justify-center md:justify-start gap-1"></div>
                   <p className="text-sm text-gray-500 mt-2">
                     Based on 5 reviews
                   </p>
@@ -447,7 +451,7 @@ const UserProfile = () => {
                     key={idx}
                     className="border border-gray-200 rounded-lg p-4 hover:shadow-lg transition"
                   >
-                    <div className="flex flex-wrap items-center mb-3 gap-3">
+                    <div className="flex flex-wrap items-center gap-3">
                       <Avatar className="h-10 w-10 mr-3 shadow-sm hover:scale-105 transition-transform duration-300">
                         <AvatarImage src={avatar} />
                         <AvatarFallback>
@@ -463,10 +467,11 @@ const UserProfile = () => {
                           {[1, 2, 3, 4, 5].map((i) => (
                             <Star
                               key={i}
-                              className={`w-4 h-4 ${i <= rating
-                                ? "text-yellow-400 fill-yellow-400"
-                                : "text-gray-300"
-                                }`}
+                              className={`w-4 h-4 ${
+                                i <= rating
+                                  ? "text-yellow-400 fill-yellow-400"
+                                  : "text-gray-300"
+                              }`}
                             />
                           ))}
                         </div>

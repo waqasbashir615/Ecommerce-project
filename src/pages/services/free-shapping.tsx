@@ -82,7 +82,7 @@ const benefits = [
 
 const FreeShipping = () => {
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen hide-scrollbar h-screen overflow-y-scroll">
             <NavBarTop />
             <div className="min-h-screen w-full bg-white text-gray-900">
                 <motion.section

@@ -8,6 +8,7 @@ import {
 import { MdEmail, MdLocationOn, MdPhone } from "react-icons/md";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import IMAGES from "@/assets/images";
 
 const Footer = () => {
   return (
@@ -16,23 +17,20 @@ const Footer = () => {
         <div className=" mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10">
           {/* Brand & Contact */}
           <div>
-            <h2 className="text-3xl font-bold mb-4">kalles</h2>
+            <h2 className="text-3xl font-bold mb-4">BrandMind
+            </h2>
             <div className="space-y-2 text-sm">
               <div className="flex items-start gap-2">
                 <MdLocationOn className="mt-1" />
-                <span>
-                  184 Main Rd E, St Albans VIC 3021,
-                  <br />
-                  Australia
-                </span>
+                <span>Nawab Town Lahore, Pakistan</span>
               </div>
               <div className="flex items-center gap-2">
                 <MdEmail />
-                <span>contact@company.com</span>
+                <span>waqasb711@gmail.com</span>
               </div>
               <div className="flex items-center gap-2">
                 <MdPhone />
-                <span>+001 2233 456</span>
+                <span>+92-308-6996619</span>
               </div>
             </div>
             <div className="flex gap-4 mt-4 text-xl">
@@ -84,23 +82,49 @@ const Footer = () => {
             <p className="text-sm mb-4">
               Subscribe to our newsletter and get 10% off your first purchase
             </p>
-            <div className="flex gap-2">
-              <Input
-                type="email"
-                placeholder="Your email address"
-                className="flex-1"
-              />
-              <Button className="bg-black text-white hover:bg-gray-800">
-                Subscribe
-              </Button>
+            <div className="w-full max-w-md">
+              <div className="relative">
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="w-full px-4 py-3 pr-32 rounded-lg border border-gray-900 focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all"
+                />
+                <Button
+                  type="submit"
+                  className="absolute top-1/2 right-1 cursor-pointer -translate-y-1/2 bg-black text-white h-7 rounded-md hover:bg-gray-800 active:bg-gray-900 transition-all shadow-md hover:shadow-lg"
+                >
+                  Subscribe
+                </Button>
+              </div>
             </div>
-            {/* <div className="flex gap-4 mt-6 opacity-60 text-xs">
-              <img src="/paypal.svg" alt="PayPal" />
-              <img src="/visa.svg" alt="Visa" />
-              <img src="/amex.svg" alt="Amex" />
-              <img src="/skrill.svg" alt="Skrill" />
-              <img src="/bank.svg" alt="Bank Transfer" />
-            </div> */}
+
+            <div className="flex flex-wrap items-center gap-4 mt-6 text-xs">
+              <img
+                src={IMAGES.PAYPAL}
+                alt="PayPal"
+                className="size-8 object-contain"
+              />
+              <img
+                src={IMAGES.SkrillLogo}
+                alt="Skrill"
+                className="size-8 object-contain"
+              />
+              <img
+                src={IMAGES.GOOGLEPAY}
+                alt="Google Pay"
+                className="size-8 object-contain"
+              />
+              <img
+                src={IMAGES.VISA}
+                alt="Visa"
+                className="size-8 object-contain"
+              />
+              <img
+                src={IMAGES.MASTER}
+                alt="MasterCard"
+                className="size-8 object-contain"
+              />
+            </div>
           </div>
         </div>
       </footer>

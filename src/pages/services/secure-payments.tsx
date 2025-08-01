@@ -40,23 +40,19 @@ const paymentOptions = [
 
 const PaymentMethods = () => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen hide-scrollbar h-screen overflow-y-scroll">
       <NavBarTop />
 
       {/* Breadcrumb */}
       <div className="px-4 py-4 sm:px-6 sm:py-6 md:px-10 md:py-8 lg:px-14 lg:py-10">
         <GenBreadcrumb
-          items={[
-            { label: "Home", to: "/main" },
-            { label: "Free Shipping" },
-          ]}
+          items={[{ label: "Home", to: "/main" }, { label: "Secure Payment" }]}
         />
       </div>
 
       {/* Main Section */}
       <section className="w-full bg-white px-4 py-10 sm:px-6 sm:py-12 md:px-10 md:py-16 lg:px-20 lg:pt-0 pb-20">
         <div className="max-w-5xl mx-auto">
-
           {/* Heading */}
           <div className="text-center mb-10 sm:mb-14">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
@@ -104,17 +100,19 @@ const PaymentMethods = () => {
                 Payment Assistance Available
               </h4>
               <p className="text-gray-600 max-w-md">
-                Our support team is ready to help with any payment questions or issues you may encounter.
+                Our support team is ready to help with any payment questions or
+                issues you may encounter.
               </p>
-              <Link to="/customer-support"> <a
-                href="/contact"
-                className="mt-3 inline-flex items-center gap-2 bg-gray-900 hover:bg-gray-800 text-white px-5 py-2.5 rounded-lg transition-colors duration-200"
-              >
-                Contact Support
-                <ArrowRight className="w-4 h-4" />
-              </a>
+              <Link to="/customer-support">
+                {" "}
+                <a
+                  href="/contact"
+                  className="mt-3 inline-flex items-center gap-2 bg-gray-900 hover:bg-gray-800 text-white px-5 py-2.5 rounded-lg transition-colors duration-200"
+                >
+                  Contact Support
+                  <ArrowRight className="w-4 h-4" />
+                </a>
               </Link>
-             
             </div>
           </div>
         </div>

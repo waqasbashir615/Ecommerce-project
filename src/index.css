@@ -5,3 +5,11 @@
   0% { transform: translate(0,0); opacity: 1; }
   100% { transform: translate(-10px,-10px); opacity: 0; }
 }
+.hide-scrollbar {
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}

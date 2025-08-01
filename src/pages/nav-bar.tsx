@@ -9,12 +9,13 @@ const NavBarTop = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+<header className="bg-white-500/20 backdrop-blur-md backdrop-saturate-150 shadow-sm sticky top-0 z-50">
+
       <div className="container mx-auto py-3 w-[90%]">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <span className="text-xl font-bold text-gray-800">BrandName</span>
+              <span className="text-xl font-bold text-gray-800">BrandMind</span>
             </Link>
           </div>
 
@@ -88,11 +89,11 @@ const NavBarTop = () => {
                 Search
               </Link>
               <Link
-                to="/shop"
+                to="/profile"
                 className="py-2 text-gray-700 hover:text-indigo-600 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Account
+                User profile
               </Link>
               <Link
                 to="/wishlist"
@@ -101,7 +102,7 @@ const NavBarTop = () => {
                 Wishlist
               </Link>
               <Link
-                to="/sale"
+                to="/wishlist"
                 className="py-2 text-gray-700 hover:text-indigo-600 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >

@@ -1,28 +1,20 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import TopNavBar from "../pages/nav-bar";
 import Footer from "./footer";
 import { useState } from "react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { ArrowLeft, Loader2, Star } from "lucide-react";
+import { Loader2, Star } from "lucide-react";
 import { FaHeart } from "react-icons/fa";
 import { CiHeart, CiShare2 } from "react-icons/ci";
 import { useGetProductsQuery } from "@/store/services/fake-store-api";
 import CartDialog from "./cart-dialog";
 import EditCartForm from "./edit-cart-form";
 import AddCartForm from "./add-cart-form";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "./ui/breadcrumb";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import GenBreadcrumb from "@/pages/generic-components/gen-breadcrumb";
 
 const WishListPage = () => {
-  const navigate = useNavigate();
   const { data: products, isLoading, isError } = useGetProductsQuery();
   const [likedItems, setLikedItems] = useState<{ [key: number]: boolean }>({});
   const [searchTerm, setSearchTerm] = useState("");
@@ -49,10 +41,6 @@ const WishListPage = () => {
     );
   }
 
-  const handleClick = () => {
-    navigate("/main");
-  };
-
   const filteredProducts = products
     .slice(0, 10)
     .filter((product) =>
@@ -77,7 +65,7 @@ const WishListPage = () => {
           {/* Title Section */}
           <div className="text-center mb-10">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-              Your Wishlist
+              Your Wishlist 1122
             </h1>
             <p className="text-gray-500 max-w-md mx-auto">
               {filteredProducts.length > 0
@@ -88,27 +76,15 @@ const WishListPage = () => {
 
           {/* Breadcrumb + Search */}
           <div className="flex flex-col lg:flex-row justify-between items-center gap-4 mb-8">
-            <Breadcrumb className="text-sm">
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink asChild>
-                    <Link
-                      to="/main"
-                      className="hover:text-primary transition-colors"
-                    >
-                      Home
-                    </Link>
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbPage className="font-semibold text-primary">
-                    Wishlist
-                  </BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
-
+            <div>
+            {/* Breadcrumb */}
+              <GenBreadcrumb
+                items={[
+                  { label: "Home", to: "/main" },
+                  { label: "Wishlist" }, // current page
+                ]}
+              />
+            </div>
             <div className="relative w-full max-w-md">
               <Input
                 type="text"
@@ -191,12 +167,10 @@ const WishListPage = () => {
                           <CartDialog
                             triggerLabel="Quick View"
                             buttonBg="bg-white text-gray-900 hover:bg-gray-100"
-                                                      >
+                          >
                             <EditCartForm product={product} />
                           </CartDialog>
-                          <CartDialog
-                            triggerLabel="Add to Cart"
-                          >
+                          <CartDialog triggerLabel="Add to Cart">
                             <AddCartForm product={product} />
                           </CartDialog>
                         </div>

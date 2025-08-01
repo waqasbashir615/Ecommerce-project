@@ -1,12 +1,9 @@
-
 import Footer from "@/components/footer";
-import NavBarTop from "./nav-bar";
-import GenBreadcrumb from "./generic-components/gen-breadcrumb";
-import CategoryProductList from "./generic-components/CategoryProductList";
+import CategoryProductList from "../generic-components/CategoryProductList";
+import GenBreadcrumb from "../generic-components/gen-breadcrumb";
+import NavBarTop from "../nav-bar";
 
-const Test = () => {
-
-
+const WomensClothing = () => {
   return (
    <div>
     <NavBarTop/>
@@ -30,4 +27,4 @@ const Test = () => {
   );
 };
 
-export default Test;
+export default WomensClothing;

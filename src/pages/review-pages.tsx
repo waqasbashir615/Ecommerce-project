@@ -2,15 +2,7 @@ import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Star, LayoutList, Grid3X3 } from "lucide-react";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Link } from "react-router-dom";
+import GenBreadcrumb from "./generic-components/gen-breadcrumb";
 
 interface Review {
   avatar: string;
@@ -28,7 +20,8 @@ const reviews: Review[] = [
     name: "Jane Doe",
     rating: 5,
     date: "June 28, 2023",
-    comment: "Excellent product quality and fast delivery. Will definitely purchase again!",
+    comment:
+      "Excellent product quality and fast delivery. Will definitely purchase again!",
   },
   {
     id: "2",
@@ -62,48 +55,25 @@ const ReviewPage = () => {
   const averageRating =
     reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length;
 
-  const ratingDistribution = [5, 4, 3, 2, 1].map((rating) => {
-    const count = reviews.filter(
-      (review) => Math.floor(review.rating) === rating
-    ).length;
-    return {
-      rating,
-      count,
-      percentage: Math.round((count / reviews.length) * 100),
-    };
-  });
-
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Breadcrumb */}
-      <Breadcrumb className="text-sm p-6">
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link to="/main" className="hover:text-primary transition-colors">
-                Home
-              </Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link to="/profile" className="hover:text-primary transition-colors">
-                Profile
-              </Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage className="font-semibold text-primary">Reviews</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
+      <div className="px-20 py-10">
+        {/* Breadcrumb */}
+        <GenBreadcrumb
+          items={[
+            { label: "Home", to: "/main" },
+            { label: "Profile", to: "/profile" },
+            { label: "Customer Review" }, // current page
+          ]}
+        />
+      </div>
 
       {/* Page Header */}
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-extrabold text-gray-800 mb-2">Customer Reviews</h1>
+          <h1 className="text-3xl font-extrabold text-gray-800 mb-2">
+            Customer Reviews
+          </h1>
           <p className="text-gray-500">What our customers say about us</p>
         </div>
 
@@ -126,10 +96,10 @@ const ReviewPage = () => {
                   />
                 ))}
               </div>
-              <p className="text-gray-500 mt-1">Based on {reviews.length} reviews</p>
+              <p className="text-gray-500 mt-1">
+                Based on {reviews.length} reviews
+              </p>
             </div>
-
-          
           </div>
         </div>
 
@@ -140,7 +110,9 @@ const ReviewPage = () => {
           </h2>
           <Button
             variant="outline"
-            onClick={() => setLayout((prev) => (prev === "list" ? "grid" : "list"))}
+            onClick={() =>
+              setLayout((prev) => (prev === "list" ? "grid" : "list"))
+            }
             className="flex items-center gap-2"
           >
             {layout === "list" ? (
@@ -209,7 +181,9 @@ const ReviewPage = () => {
                       />
                     ))}
                   </div>
-                  <div className="text-sm text-gray-500 mt-1">{review.date}</div>
+                  <div className="text-sm text-gray-500 mt-1">
+                    {review.date}
+                  </div>
                 </div>
               </div>
               <p className="text-gray-700 mt-3">{review.comment}</p>

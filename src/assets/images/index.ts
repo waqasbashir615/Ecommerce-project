@@ -25,6 +25,12 @@ import men5 from "./men5.webp";
 import men6 from "./men6.webp";
 import men7 from "./men7.webp";
 import loginpage from "./loginpage.jpg";
+import MensClothing from "./mens-clothing.jpg";
+import Payapl from "./paypal.svg";
+import SkrillLogo from "./skrill-logo.svg";
+import GooglePay from "./google-pay.svg";
+import VisaCard from "./visa.svg";
+import MasterCard from "./master-card.svg";
 
 
 interface ImageMap {
@@ -59,7 +65,12 @@ const IMAGES: ImageMap = {
   IMG23: img23,
   IMG24: img24,
   IMG25: img25,
-
+  MENS_CLOTHING: MensClothing,
+  PAYPAL: Payapl,
+  SkrillLogo: SkrillLogo,
+  GOOGLEPAY: GooglePay,
+  VISA: VisaCard,
+  MASTER: MasterCard,
 };
 
 export default IMAGES;

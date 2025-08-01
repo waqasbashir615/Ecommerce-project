@@ -47,7 +47,7 @@ const LatestBlogs = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
         {posts.map((post, index) => (
-          <Card key={index} className="cursor-pointer shadow-none border-none">
+          <Card key={index} className="cursor-zoom-in shadow-none border-none">
             <div className="relative group inline-block overflow-hidden ">
               <img
                 src={post.image}
