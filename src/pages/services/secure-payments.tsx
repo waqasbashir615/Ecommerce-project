@@ -103,7 +103,7 @@ const PaymentMethods = () => {
                 Our support team is ready to help with any payment questions or
                 issues you may encounter.
               </p>
-              <Link to="/customer-support">
+              {/* <Link to="/customer-support">
                 {" "}
                 <a
                   href="/contact"
@@ -112,7 +112,20 @@ const PaymentMethods = () => {
                   Contact Support
                   <ArrowRight className="w-4 h-4" />
                 </a>
+              </Link> */}
+              <div className="border border-black rounded-lg p-1 hover:bg-black cursor-pointer">
+               
+                 <Link to="/customer-support">
+                {" "}
+                <a
+                  href="/contact"
+                  className=" inline-flex items-center gap-2 bg-gray-900 hover:bg-gray-800 text-white px-5 py-2 rounded-lg transition-colors duration-200"
+                >
+                  Contact Support
+                  <ArrowRight className="w-4 h-4" />
+                </a>
               </Link>
+              </div>
             </div>
           </div>
         </div>

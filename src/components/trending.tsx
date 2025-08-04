@@ -37,25 +37,27 @@ const Tranding = () => {
           <h1 className="text-3xl font-bold text-gray-800">
             Top Trending Products
           </h1>
-          <Button
-            variant="outline"
-            onClick={() =>
-              setLayout((prev) => (prev === "grid" ? "list" : "grid"))
-            }
-            className="flex items-center gap-2"
-          >
-            {layout === "grid" ? (
-              <>
-                <LayoutList className="w-4 h-4" />
-                List View
-              </>
-            ) : (
-              <>
-                <Grid3X3 className="w-4 h-4" />
-                Grid View
-              </>
-            )}
-          </Button>
+          <div className="border border-black rounded-lg p-1 cursor-pointer">
+            <Button
+              variant="outline"
+              onClick={() =>
+                setLayout((prev) => (prev === "grid" ? "list" : "grid"))
+              }
+              className="flex items-center gap-2 bg-black text-white "
+            >
+              {layout === "grid" ? (
+                <>
+                  <LayoutList className="w-4 h-4" />
+                  List View
+                </>
+              ) : (
+                <>
+                  <Grid3X3 className="w-4 h-4" />
+                  Grid View
+                </>
+              )}
+            </Button>
+          </div>
         </div>
 
         {/* Products Grid */}

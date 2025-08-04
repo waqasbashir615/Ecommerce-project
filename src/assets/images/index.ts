@@ -7,6 +7,8 @@ import bag from "./bag.avif";
 import watch from "./watch.jpg";
 import Headphone from "./watch.png";
 import shoes from "./shoes.jpg";
+import shoess from "./shoess.png";
+import shoesv from "./shoes-sv.svg";
 import troser1 from "./troser1.webp";
 import troser2 from "./troser2.webp";
 import banner1 from "./banner1.jpg";
@@ -32,6 +34,28 @@ import SkrillLogo from "./skrill-logo.svg";
 import GooglePay from "./google-pay.svg";
 import VisaCard from "./visa.svg";
 import MasterCard from "./master-card.svg";
+import BackPack from "../images/svg-icons/backpack.svg";
+import Beannie from "../images/svg-icons/beannie.svg";
+import Bra from "../images/svg-icons/bra.svg";
+import Briefs from "../images/svg-icons/briefs.svg";
+import Dress from "../images/svg-icons/dress.svg";
+import Flip from "../images/svg-icons/flip.svg";
+import Hanger from "../images/svg-icons/hanger.svg";
+import Heels from "../images/svg-icons/heels.svg";
+import Hoodies from "../images/svg-icons/hoodie.svg";
+import Pants from "../images/svg-icons/pants.svg";
+import Polo from "../images/svg-icons/polo.svg";
+import Ragged from "../images/svg-icons/ragged.svg";
+import Shirt from "../images/svg-icons/shirt.svg";
+import Snapback from "../images/svg-icons/snapback.svg";
+import Socks from "../images/svg-icons/socks.svg";
+import Tanktop from "../images/svg-icons/tanktop.svg";
+import Vans from "../images/svg-icons/vans.svg";
+import Coat from "../images/svg-icons/coat.svg";
+import Party from "../images/svg-icons/party.svg";
+import Ties from "../images/svg-icons/ties.svg";
+import HighHeels from "../images/svg-icons/high-heels.svg";
+import Fax from "../images/svg-icons/fax.svg";
 
 
 interface ImageMap {
@@ -39,7 +63,31 @@ interface ImageMap {
 }
 
 const IMAGES: ImageMap = {
+  // svg icons
   LOGINPAGE :loginpage,
+  BACKPACK:BackPack,
+  BEANNIE:Beannie,
+  BRA:Bra,
+  FAX:Fax,
+  HIGHHEELS:HighHeels,
+  TIES:Ties,
+  PARTY:Party,
+  COAT:Coat,
+  BRIEFS: Briefs,
+  DRESS:Dress,
+  FLIP:Flip,
+  HANGER:Hanger,
+  HEELS:Heels,
+  HOODIES:Hoodies,
+  PANTS:Pants,
+  POLO:Polo,
+  RAGGED:Ragged,
+  SHIRT:Shirt,
+  SNAPBACK:Snapback,
+  SOCKS:Socks,
+  TANKTOP:Tanktop,
+  VANS:Vans,
+  
   MEN2 :men2,
   MEN3 :men3,
   MEN4 :men4,
@@ -54,6 +102,8 @@ const IMAGES: ImageMap = {
   BAG: bag,
   WATCH: watch,
   SHOES: shoes,
+  SHOESS: shoess,
+  SHOESV: shoesv,
   TROSER1: troser1,
   TROSER2: troser2,
   BANNER1: banner1,

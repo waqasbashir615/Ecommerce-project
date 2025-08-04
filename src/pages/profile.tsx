@@ -394,11 +394,14 @@ const UserProfile = () => {
                 <h3 className="text-xl font-semibold text-gray-900">
                   Customer Ratings
                 </h3>
-                <Link to="/review-pages">
-                  <a className="flex items-center gap-2 px-4 py-2 border rounded-lg hover:bg-gray-800 hover:text-white transition whitespace-nowrap">
-                    <Star className="w-4 h-4" /> See All Reviews
-                  </a>
-                </Link>
+
+                <div className="border  border-black rounded-lg p-1 hover:bg-black cursor-pointer">
+                  <Link to="/review-pages">
+                    <a className="flex items-center gap-2 px-4 py-2 border border-black rounded-lg bg-black text-white   transition whitespace-nowrap">
+                      <Star className="w-4 h-4" /> See All Reviews
+                    </a>
+                  </Link>
+                </div>
               </div>
               <div className="flex flex-col md:flex-row items-center md:items-start">
                 <div className="text-center md:text-left  md:mb-0">

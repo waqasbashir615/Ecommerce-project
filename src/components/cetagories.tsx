@@ -6,7 +6,7 @@ const Categories = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full min-h-screen py-10">
+    <div className="w-full max-h-screen py-10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Women's Clothing */}
         <div

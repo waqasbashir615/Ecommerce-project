@@ -3,7 +3,7 @@ import TopNavBar from "../pages/nav-bar";
 import Footer from "./footer";
 import { useState } from "react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Loader2, Star } from "lucide-react";
+import { Loader2, Search, Star } from "lucide-react";
 import { FaHeart } from "react-icons/fa";
 import { CiHeart, CiShare2 } from "react-icons/ci";
 import { useGetProductsQuery } from "@/store/services/fake-store-api";
@@ -80,7 +80,7 @@ const WishListPage = () => {
                 items={[{ label: "Home", to: "/main" }, { label: "Wishlist" }]}
               />
             </div>
-            <div className="relative w-full max-w-md">
+            {/* <div className="relative w-full max-w-md">
               <Input
                 type="text"
                 placeholder="Search your wishlist..."
@@ -102,6 +102,20 @@ const WishListPage = () => {
                   d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                 ></path>
               </svg>
+            </div> */}
+            <div className="w-full max-w-md mb-6">
+              <div className="relative">
+                <Input
+                  type="text"
+                  placeholder="Search your wishlist..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full px-4 py-3 pr-28 rounded-lg border border-black-400 shadow-sm focus:ring-2 focus:ring-black focus:outline-none transition-all"
+                />
+                <Button className="absolute top-1/2 right-1 -translate-y-1/2 bg-black text-white h-8 px-4 rounded-md hover:bg-gray-800 active:bg-gray-900 transition-all shadow-md hover:shadow-lg">
+                  <Search className="h-4 w-4" />
+                </Button>
+              </div>
             </div>
           </div>
           {filteredProducts.length === 0 ? (
