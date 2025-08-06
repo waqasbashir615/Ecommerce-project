@@ -2,27 +2,7 @@
 import { api } from "./core";
 
 // ===== TYPES =====
-export type Product = {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-};
 
-export type LoginPayload = {
-  username: string;
-  password: string;
-};
-
-export type LoginResponse = {
-  token: string;
-};
 
 // ===== API ENDPOINTS =====
 export const fakeStoreApi = api.injectEndpoints({

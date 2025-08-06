@@ -4,11 +4,18 @@ import "keen-slider/keen-slider.min.css";
 import { Card, CardContent } from "@/components/ui/card";
 import IMAGES from "@/assets/images";
 import { Link } from "react-router-dom";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 const products = [
   { id: 1, name: "Backpack", image: IMAGES.BACKPACK, price: "$49" },
   { id: 2, name: "Beanie", image: IMAGES.BEANNIE, price: "$39" },
-  { id: 3, name: "Bra", image: IMAGES.BRA, price: "$29" },
+  { id: 3, name: "Glassses", image: IMAGES.BRA, price: "$29" },
   { id: 4, name: "Briefs", image: IMAGES.BRIEFS, price: "$25" },
   { id: 5, name: "Dress", image: IMAGES.DRESS, price: "$79" },
   { id: 6, name: "Flip Flops", image: IMAGES.FLIP, price: "$19" },
@@ -29,6 +36,12 @@ const PremiumCollection = () => {
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<{
+    name: string;
+    image: string;
+    price: string;
+  } | null>(null);
 
   const [sliderRef, sliderInstance] = useKeenSlider<HTMLDivElement>({
     loop: true,
@@ -39,10 +52,7 @@ const PremiumCollection = () => {
     },
     breakpoints: {
       "(min-width: 320px)": { slides: { perView: 1, spacing: 6 } },
-      "(min-width: 375px)": { slides: { perView: 1, spacing: 6 } },
-      "(min-width: 425px)": { slides: { perView: 1, spacing: 6 } },
       "(min-width: 480px)": { slides: { perView: 2, spacing: 6 } },
-      "(min-width: 640px)": { slides: { perView: 2, spacing: 6 } },
       "(min-width: 768px)": { slides: { perView: 3, spacing: 6 } },
       "(min-width: 1024px)": { slides: { perView: 4, spacing: 6 } },
       "(min-width: 1280px)": { slides: { perView: 5, spacing: 6 } },
@@ -67,21 +77,17 @@ const PremiumCollection = () => {
 
   const resumeAutoPlay = () => {
     if (sliderInstance.current) {
-      timer.current = setInterval(() => {
-        sliderInstance.current?.next();
-      }, 3000);
+      timer.current = setInterval(() => sliderInstance.current?.next(), 3000);
     }
   };
 
-  const maxDotsToShow = 5;
-  const totalSlides = sliderInstance.current?.track.details.slides.length || 0;
-  const visibleDots = Math.min(totalSlides, maxDotsToShow);
-
-  const getDotIndex = (index: number) => {
-    if (totalSlides <= maxDotsToShow) return index;
-    const step = totalSlides / maxDotsToShow;
-    return Math.round(index * step);
+  const handleAddToCart = (product: { name: string; image: string; price: string }) => {
+    setSelectedProduct(product);
+    setDialogOpen(true);
+    pauseAutoPlay();
   };
+
+  const visibleDots = 5;
 
   return (
     <div className="my-16 px-6">
@@ -100,8 +106,13 @@ const PremiumCollection = () => {
           onMouseLeave={resumeAutoPlay}
         >
           {products.map((product) => (
-            <div key={product.id} className="keen-slider__slide py-4 px-1 sm:px-2">
-              <Link to={`/products/${product.id}`}>
+            <div
+              key={product.id}
+              className="keen-slider__slide py-8 px-1 sm:px-2"
+              onMouseEnter={pauseAutoPlay}
+              onMouseLeave={resumeAutoPlay}
+            >
+              <Link to={`/all-products-page/`}>
                 <Card className="rounded-xl sm:rounded-2xl bg-white border border-gray-200 shadow-md sm:shadow-lg overflow-hidden transition-all duration-300 hover:shadow-lg sm:hover:shadow-xl hover:-translate-y-1 relative cursor-pointer">
                   <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-white rounded-full px-2 sm:px-3 py-0.5 sm:py-1 text-xs font-medium shadow-sm border border-gray-300">
                     New
@@ -123,12 +134,12 @@ const PremiumCollection = () => {
                           {product.price}
                         </p>
                         <div className="border border-black rounded-lg p-1 hover:bg-black cursor-pointer">
-                          <button 
-                            className="text-xs sm:text-sm bg-black text-white cursor-pointer px-2 sm:px-3 py-1 sm:py-2 rounded-lg hover:bg-gray-800 transition-all duration-200"
+                          <button
+                            className="text-xs sm:text-sm bg-black text-white px-2 sm:px-3 py-1 sm:py-2 rounded-lg hover:bg-gray-800 transition-all duration-200"
                             onClick={(e) => {
                               e.preventDefault();
                               e.stopPropagation();
-                              alert(`${product.name} added to cart!`);
+                              handleAddToCart(product);
                             }}
                           >
                             Add to Cart
@@ -144,9 +155,12 @@ const PremiumCollection = () => {
         </div>
 
         {loaded && sliderInstance.current && (
-          <div className="hidden md:flex justify-center space-x-2 mt-4 sm:mt-6">
+          <div className="hidden md:flex justify-center space-x-2 ">
             {Array.from({ length: visibleDots }).map((_, idx) => {
-              const realIdx = getDotIndex(idx);
+              const totalSlides =
+                sliderInstance.current!.track.details.slides.length;
+              const step = totalSlides / visibleDots;
+              const realIdx = Math.round(idx * step);
               return (
                 <button
                   key={idx}
@@ -154,10 +168,10 @@ const PremiumCollection = () => {
                     sliderInstance.current?.moveToIdx(realIdx);
                     pauseAutoPlay();
                   }}
-                  className={`h-3 sm:h-3 rounded-full transition-all duration-300 ${
+                  className={`h-3 rounded-full transition-all duration-300 ${
                     currentSlide === realIdx
-                      ? "w-6 sm:w-5 bg-black"
-                      : "w-4 sm:w-3 border border-gray-500 hover:bg-gray-400"
+                      ? "w-6 bg-black"
+                      : "w-4 border border-gray-500 hover:bg-gray-400"
                   }`}
                   aria-label={`Go to slide ${realIdx + 1}`}
                 />
@@ -165,16 +179,92 @@ const PremiumCollection = () => {
             })}
           </div>
         )}
-
-        <div className="text-center mt-8">
-          <Link 
-            to="/products" 
+        <div className="max-w-max mx-auto text-center mt-8 border border-black rounded-lg p-1 hover:bg-black cursor-pointer">
+          <Link
+            to="/all-products-page"
             className="inline-block px-6 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
           >
             View All Products
           </Link>
         </div>
       </div>
+
+      {/* Cart Modal */}
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        <DialogContent className="sm:max-w-[425px] bg-white p-6 rounded-lg shadow-lg">
+          <DialogHeader>
+            <DialogTitle className="text-center text-xl font-bold text-gray-900">
+              Added to your cart!
+            </DialogTitle>
+          </DialogHeader>
+          
+          <div className="mt-4 space-y-4">
+            {/* Product Summary */}
+            {selectedProduct && (
+              <div className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg">
+                <div className="w-20 h-20 flex-shrink-0">
+                  <img 
+                    src={selectedProduct.image} 
+                    alt={selectedProduct.name}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-medium text-gray-900">{selectedProduct.name}</h4>
+                  <p className="text-sm text-gray-600">{selectedProduct.price}</p>
+                </div>
+              </div>
+            )}
+
+            {/* Order Summary */}
+            <div className="border-t border-gray-200 pt-4">
+              <h5 className="font-medium text-gray-900 mb-2">Order Summary</h5>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Subtotal</span>
+                  <span className="font-medium">
+                    {selectedProduct?.price}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Shipping</span>
+                  <span className="font-medium">Free</span>
+                </div>
+                <div className="flex justify-between border-t border-gray-200 pt-2">
+                  <span className="text-gray-900 font-medium">Total</span>
+                  <span className="font-bold text-gray-900">
+                    {selectedProduct?.price}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex gap-3 pt-4">
+              <Button
+                onClick={() => {
+                  setDialogOpen(false);
+                  resumeAutoPlay();
+                }}
+                variant="outline"
+                className="flex-1 border-gray-300 hover:bg-gray-100 text-gray-800"
+              >
+                Continue Shopping
+              </Button>
+              <Button
+                onClick={() => {
+                  setDialogOpen(false);
+                  resumeAutoPlay();
+                  // Navigate to cart page would go here
+                }}
+                className="flex-1 bg-black hover:bg-gray-800 text-white"
+              >
+                View Cart
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

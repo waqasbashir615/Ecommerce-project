@@ -34,9 +34,10 @@ const Tranding = () => {
       <div className="max-w-6xl mx-auto">
         {/* Title Section */}
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800">
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 ">
             Top Trending Products
           </h1>
+
           <div className="border border-black rounded-lg p-1 cursor-pointer">
             <Button
               variant="outline"

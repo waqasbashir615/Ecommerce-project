@@ -31,8 +31,8 @@ const tabs = [
 
 const UserProfile = () => {
   return (
-    <div className="mx-auto px-4 sm:px-6 py-6 bg-gray-50 hide-scrollbar h-screen overflow-y-scroll">
-      <div className="ps-6">
+    <div className="mx-auto px-4 sm:px-6 py-4 bg-gray-50 hide-scrollbar h-screen overflow-y-scroll">
+      <div className="px-4 py-1 pt-4 md:px-10 lg:px-20 ">
         <GenBreadcrumb
           items={[
             { label: "Home", to: "/main" },

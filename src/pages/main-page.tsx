@@ -17,11 +17,11 @@ const Mainpage = () => {
       <div className="w-full p-5 lg:p-0 lg:w-[70%] mx-auto ">
         <Cetagories />
         <Trending />
-        </div>
-        <div className="w-full mx-auto ">
-    <PremiumCollection/>
-        </div>
-        <div className="w-full p-5 lg:p-0 lg:w-[70%] mx-auto ">
+      </div>
+      <div className="w-full mx-auto ">
+        <PremiumCollection />
+      </div>
+      <div className="w-full p-5 lg:p-0 lg:w-[70%] mx-auto ">
         <BestSeller />
         <LatestBlogs />
       </div>

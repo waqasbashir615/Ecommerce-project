@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Loader2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,6 +7,13 @@ import { useGetCategoriesQuery, useGetProductsByCategoryQuery } from "@/store/se
 const CategoryPage = () => {
   const { data: categories, isLoading: catLoading } = useGetCategoriesQuery();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  // Auto-select first category when categories are loaded
+  useEffect(() => {
+    if (categories && categories.length > 0 && !selectedCategory) {
+      setSelectedCategory(categories[0]);
+    }
+  }, [categories, selectedCategory]);
 
   const {
     data: categoryProducts,
@@ -52,8 +59,8 @@ const CategoryPage = () => {
         {/* Category Products */}
         {selectedCategory && (
           <div className="text-center mb-6">
-            <h2 className="text-2xl font-semibold text-gray-900">
-              
+            <h2 className="text-2xl font-semibold text-gray-900 uppercase">
+              {selectedCategory}
             </h2>
           </div>
         )}
@@ -71,17 +78,26 @@ const CategoryPage = () => {
                 key={product.id} 
                 className="p-6 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-shadow"
               >
-                <div className="flex justify-center mb-4">
+                <div className="flex justify-center mb-4 h-48">
                   <img
                     src={product.image}
                     alt={product.title}
-                    className="h-48 w-full object-contain"
+                    className="h-full w-full object-contain"
                   />
                 </div>
                 <h2 className="font-semibold text-lg text-gray-900 mb-2 line-clamp-2">
                   {product.title}
                 </h2>
-                <p className="text-gray-900 font-bold">${product.price}</p>
+                <div className="flex justify-between items-center mt-2 sm:mt-3">
+                  <p className="text-gray-500 font-semibold text-base sm:text-lg">
+                    ${product.price}
+                  </p>
+                  <div className="border border-black rounded-lg p-1 hover:bg-black cursor-pointer">
+                    <button className="text-xs sm:text-sm bg-black text-white cursor-pointer px-2 sm:px-3 py-1 sm:py-2 rounded-lg hover:bg-gray-800 transition-all duration-200">
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
               </Card>
             ))}
           </div>

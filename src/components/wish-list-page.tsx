@@ -48,21 +48,10 @@ const WishListPage = () => {
     );
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col ">
       <TopNavBar />
-      <main className="flex-grow container mx-auto py-8">
+      <main className="flex-grow py-10 mx-auto lg:w-[75%]">
         <div className="max-w-7xl mx-auto">
-          {/* Back Button */}
-          {/* <Button
-            onClick={handleClick}
-            variant="ghost"
-            className="mb-6 hover:bg-gray-100 transition-colors"
-          >
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Shop
-          </Button> */}
-
-          {/* Title Section */}
           <div className="text-center mb-10">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
               Your Wishlist
@@ -80,29 +69,6 @@ const WishListPage = () => {
                 items={[{ label: "Home", to: "/main" }, { label: "Wishlist" }]}
               />
             </div>
-            {/* <div className="relative w-full max-w-md">
-              <Input
-                type="text"
-                placeholder="Search your wishlist..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 pr-4 py-2 rounded-full border-gray-300 focus-visible:ring-primary"
-              />
-              <svg
-                className="absolute left-3 top-2.5 h-5 w-5 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                ></path>
-              </svg>
-            </div> */}
             <div className="w-full max-w-md mb-6">
               <div className="relative">
                 <Input
@@ -110,7 +76,7 @@ const WishListPage = () => {
                   placeholder="Search your wishlist..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full px-4 py-3 pr-28 rounded-lg border border-black-400 shadow-sm focus:ring-2 focus:ring-black focus:outline-none transition-all"
+                  className="w-full px-4 py-5 pr-28 rounded-lg border border-black-400 shadow-sm focus:ring-2 focus:ring-black focus:outline-none transition-all"
                 />
                 <Button className="absolute top-1/2 right-1 -translate-y-1/2 bg-black text-white h-8 px-4 rounded-md hover:bg-gray-800 active:bg-gray-900 transition-all shadow-md hover:shadow-lg">
                   <Search className="h-4 w-4" />

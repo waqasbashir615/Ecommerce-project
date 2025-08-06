@@ -7,24 +7,90 @@ import CartDialog from "@/components/cart-dialog";
 import EditCartForm from "@/components/edit-cart-form";
 import AddCartForm from "@/components/add-cart-form";
 import { Button } from "@/components/ui/button";
+import IMAGES from "@/assets/images";
 
 interface Props {
   category: string;
 }
 
+const localImages = [
+  IMAGES.LOGINPAGE,
+  IMAGES.BACKPACK,
+  IMAGES.BEANNIE,
+  IMAGES.BRA,
+  IMAGES.FAX,
+  IMAGES.HIGHHEELS,
+  IMAGES.TIES,
+  IMAGES.PARTY,
+  IMAGES.COAT,
+  IMAGES.BRIEFS,
+  IMAGES.DRESS,
+  IMAGES.FLIP,
+  IMAGES.HANGER,
+  IMAGES.HEELS,
+  IMAGES.HOODIES,
+  IMAGES.PANTS,
+  IMAGES.POLO,
+  IMAGES.RAGGED,
+  IMAGES.SHIRT,
+  IMAGES.SNAPBACK,
+  IMAGES.SOCKS,
+  IMAGES.TANKTOP,
+  IMAGES.VANS,
+  IMAGES.MEN2,
+  IMAGES.MEN3,
+  IMAGES.MEN4,
+  IMAGES.MEN5,
+  IMAGES.MEN6,
+  IMAGES.MEN7,
+  IMAGES.LOGO,
+  IMAGES.IMG3,
+  IMAGES.IMG4,
+  IMAGES.IMG5,
+  IMAGES.GIRL,
+  IMAGES.BAG,
+  IMAGES.WATCH,
+  IMAGES.HEADPHONE,
+  IMAGES.SHOES,
+  IMAGES.SHOESS,
+  IMAGES.SHOESV,
+  IMAGES.TROSER1,
+  IMAGES.TROSER2,
+  IMAGES.BANNER1,
+  IMAGES.BANNER2,
+  IMAGES.IMG18,
+  IMAGES.IMG19,
+  IMAGES.IMG20,
+  IMAGES.IMG21,
+  IMAGES.IMG22,
+  IMAGES.IMG23,
+  IMAGES.IMG24,
+  IMAGES.IMG25,
+  IMAGES.MENS_CLOTHING,
+  IMAGES.PAYPAL,
+  IMAGES.SkrillLogo,
+  IMAGES.GOOGLEPAY,
+  IMAGES.VISA,
+  IMAGES.MASTER,
+];
+
+
 const CategoryProductList = ({ category }: Props) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [likedItems, setLikedItems] = useState<{ [key: number]: boolean }>({});
 
-  const {
-    data: products,
-    isLoading,
-    isError,
-  } = useGetProductsByCategoryQuery(category);
+  const { data: products, isLoading, isError } =
+    useGetProductsByCategoryQuery(category);
 
   const filteredProducts = (products ?? []).filter((product) =>
     product.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  // Get a random local image for each product
+  const getRandomImage = (id: number): string => {
+    const index = id % localImages.length;
+    return localImages[index];
+  };
 
   if (isLoading)
     return (
@@ -47,7 +113,7 @@ const CategoryProductList = ({ category }: Props) => {
             placeholder="Search products..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full px-4 py-3 pr-28 rounded-lg border border-black-400 shadow-sm focus:ring-2 focus:black focus:outline-none transition-all"
+            className="w-full p-4 pr-28 rounded-lg border border-black-400 shadow-sm focus:ring-2 focus:black focus:outline-none transition-all"
           />
           <Button className="absolute cursor-pointer top-1/2 right-1 -translate-y-1/2 bg-black text-white h-7 px-4 rounded-md hover:bg-gray-800 active:bg-gray-900 transition-all shadow-md hover:shadow-lg">
             <Search />
@@ -70,14 +136,11 @@ const CategoryProductList = ({ category }: Props) => {
               <CardContent className="p-0 relative group overflow-hidden rounded-lg">
                 <div className="relative overflow-hidden rounded-t-lg">
                   <img
-                    src={product.image}
+                    src={getRandomImage(product.id)}
                     alt={product.title}
                     className="w-full px-2 h-64 object-contain border-b border-gray-200 transition-transform duration-300 group-hover:scale-105"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src =
-                        "https://via.placeholder.com/300x400?text=Product+Image";
-                    }}
                   />
+
                   {/* Like Icon */}
                   <button
                     className="absolute top-0 left-3 z-10 p-1 rounded-full bg-white bg-opacity-70 hover:bg-opacity-100 transition"

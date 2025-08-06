@@ -18,9 +18,8 @@ import MensClothing from "./pages/accessories-pages/mens-clothing";
 import WomensClothing from "./pages/accessories-pages/womens-access";
 import TestPage from "./pages/test";
 import PremiumCollection from "./pages/premium-collection";
-// import PremiumPage from "./pages/premium-page";
 import ScrollToTop from "./components/scroll-to-top";
-// import AllProductsPage from "./pages/all-products-page";
+import AllProductsPage from "./pages/all-products-page";
 
 const App = () => {
   return (
@@ -50,12 +49,11 @@ const App = () => {
         <Route path="/mens-clothing" element={<MensClothing />} />
         <Route path="/electronics" element={<Electronics />} />
         <Route path="/jawellary" element={<Jawellary />} />
-        
-        {/* Premium Collection Routes */}
         <Route path="/premium-collection" element={<PremiumCollection />} />
-        {/* <Route path="/premium-collection/products" element={<AllProductsPage />} /> */}
-        {/* <Route path="/premium-collection/products/:id" element={<PremiumPage />} /> */}
-        
+        <Route
+          path="/all-products-page"
+          element={<AllProductsPage />}
+        />
         <Route path="/test" element={<TestPage />} />
       </Routes>
     </>

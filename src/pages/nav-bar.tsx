@@ -10,14 +10,14 @@ const NavBarTop = () => {
 
   return (
     <header className="bg-white-500/20 backdrop-blur-md backdrop-saturate-150 shadow-sm sticky top-0 z-50">
-      <div className="container mx-auto py-3 w-[90%]">
+      <div className="mx-auto py-3 w-[90%]">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/main" className="flex items-center">
               <span className="text-xl font-bold text-gray-800">BrandMind</span>
             </Link>
           </div>
-          <div className="flex items-center space-x-4 sm:space-x-6">
+          <div className="flex items-center gap-5">
             <SearchSheet>
               <button className="p-1 text-gray-600 hover:text-indigo-600 hidden sm:block">
                 <div className="hidden sm:block">
@@ -73,40 +73,40 @@ const NavBarTop = () => {
         </div>
         {isMenuOpen && (
           <div className="sm:hidden mt-4 pt-4 border-t">
-         <div className="flex flex-col space-y-4">
-  <Link
-    to="/"
-    className="py-2 text-gray-700 hover:text-indigo-600 font-medium flex items-center gap-2"
-    onClick={() => setIsMenuOpen(false)}
-  >
-    <Search className="w-4 h-4" />
-    Search
-  </Link>
-  <Link
-    to="/profile"
-    className="py-2 text-gray-700 hover:text-indigo-600 font-medium flex items-center gap-2"
-    onClick={() => setIsMenuOpen(false)}
-  >
-    <User className="w-4 h-4" />
-    User Profile
-  </Link>
-  <Link
-    to="/wishlist"
-    className="py-2 text-gray-700 hover:text-indigo-600 font-medium flex items-center gap-2"
-    onClick={() => setIsMenuOpen(false)}
-  >
-    <Heart className="w-4 h-4" />
-    Wishlist
-  </Link>
-  <Link
-    to="/cart"
-    className="py-2 text-gray-700 hover:text-indigo-600 font-medium flex items-center gap-2"
-    onClick={() => setIsMenuOpen(false)}
-  >
-    <ShoppingCart className="w-4 h-4" />
-    Cart
-  </Link>
-</div>
+            <div className="flex flex-col space-y-4">
+              <Link
+                to="/"
+                className="py-2 text-gray-700 hover:text-indigo-600 font-medium flex items-center gap-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Search className="w-4 h-4" />
+                Search
+              </Link>
+              <Link
+                to="/profile"
+                className="py-2 text-gray-700 hover:text-indigo-600 font-medium flex items-center gap-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <User className="w-4 h-4" />
+                User Profile
+              </Link>
+              <Link
+                to="/wishlist"
+                className="py-2 text-gray-700 hover:text-indigo-600 font-medium flex items-center gap-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Heart className="w-4 h-4" />
+                Wishlist
+              </Link>
+              <Link
+                to="/cart"
+                className="py-2 text-gray-700 hover:text-indigo-600 font-medium flex items-center gap-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <ShoppingCart className="w-4 h-4" />
+                Cart
+              </Link>
+            </div>
           </div>
         )}
       </div>

@@ -70,7 +70,7 @@ const ContactFaqSection = () => {
   return (
     <div className="hide-scrollbar h-screen overflow-y-scroll">
       <NavBarTop />
-      <div className="px-4 sm:px-10 md:px-14 pt-6 sm:pt-10">
+      <div className="px-4 py-4 sm:px-6 sm:py-6 md:px-10 md:py-8 lg:px-20 lg:py-10">
         <GenBreadcrumb
           items={[
             { label: "Home", to: "/main" },

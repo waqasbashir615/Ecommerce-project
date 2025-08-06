@@ -90,7 +90,7 @@ const FreeShipping = () => {
           variants={containerVariants}
           className="w-full bg-gradient-to-r from-gray-50 to-gray-100 text-center pb-20"
         >
-          <div className="px-4 py-4 sm:px-6 sm:py-6 md:px-10 md:py-8 lg:px-14 lg:py-10">
+          <div className="px-4 py-4 sm:px-6 sm:py-6 md:px-10 md:py-8 lg:px-20 lg:py-10">
             <GenBreadcrumb
               items={[
                 { label: "Home", to: "/main" },

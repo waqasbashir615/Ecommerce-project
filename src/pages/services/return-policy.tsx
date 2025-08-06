@@ -1,4 +1,10 @@
-import { RefreshCw, Truck, CheckCircle, XCircle, RotateCcw } from "lucide-react";
+import {
+  RefreshCw,
+  Truck,
+  CheckCircle,
+  XCircle,
+  RotateCcw,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import NavBarTop from "../nav-bar";
 import Footer from "@/components/footer";
@@ -51,7 +57,7 @@ const EasyReturns = () => {
   return (
     <div className="flex flex-col min-h-screen hide-scrollbar h-screen overflow-y-scroll">
       <NavBarTop />
-      <div className="px-4 py-10 sm:px-6 sm:py-6 md:px-10 md:py-8 lg:px-14 lg:py-10">
+      <div className="px-4 py-4 sm:px-6 sm:py-6 md:px-10 md:py-8 lg:px-20 lg:py-10">
         <GenBreadcrumb
           items={[{ label: "Home", to: "/main" }, { label: "Return Policy" }]}
         />
@@ -144,12 +150,11 @@ const EasyReturns = () => {
               Ready to initiate your return?
             </h3>
 
-              <div className="border w-max mx-auto border-black rounded-lg p-1 hover:bg-black cursor-pointer">
-                <Button className="bg-black hover:bg-gray-800 text-white px-8 py-3 transition-all duration-300 shadow-md hover:shadow-lg">
-                  Start Return Process    <RotateCcw className="ml-2 h-5 w-5" />
-
-                </Button>
-              </div>
+            <div className="border w-max mx-auto border-black rounded-lg p-1 hover:bg-black cursor-pointer">
+              <Button className="bg-black hover:bg-gray-800 text-white px-8 py-3 transition-all duration-300 shadow-md hover:shadow-lg">
+                Start Return Process <RotateCcw className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
 
             <p className="text-gray-600 text-sm mt-4">
               Need help?{" "}
