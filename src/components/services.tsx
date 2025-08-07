@@ -9,8 +9,8 @@ const Services = () => {
 
   return (
     <div className="py-12 sm:px-0">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex justify-center my-8">
+      <div className="">
+        <div className="flex justify-center my-8 pb-6">
           <fieldset className="w-full sm:w-2/3 md:w-1/2 border-t-2 border-gray-800 border-b-0 border-l-0 border-r-0">
             <legend className="px-4 text-center">
               <span className="px-2 text-xl sm:text-2xl md:text-3xl font-bold text-gray-800">

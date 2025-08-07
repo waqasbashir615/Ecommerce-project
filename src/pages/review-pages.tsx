@@ -56,20 +56,19 @@ const ReviewPage = () => {
     reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length;
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="px-20 py-10">
-        {/* Breadcrumb */}
-        <GenBreadcrumb
-          items={[
-            { label: "Home", to: "/main" },
-            { label: "Profile", to: "/profile" },
-            { label: "Customer Review" }, // current page
-          ]}
-        />
-      </div>
-
+    <div className=" bg-gray-50">
       {/* Page Header */}
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="container  mx-auto px-4">
+        <div className="py-20">
+          {/* Breadcrumb */}
+          <GenBreadcrumb
+            items={[
+              { label: "Home", to: "/main" },
+              { label: "Profile", to: "/profile" },
+              { label: "Customer Review" }, // current page
+            ]}
+          />
+        </div>
         <div className="text-center mb-8">
           <h1 className="text-3xl font-extrabold text-gray-800 mb-2">
             Customer Reviews
@@ -131,7 +130,7 @@ const ReviewPage = () => {
       </div>
 
       {/* Reviews */}
-      <main className="max-w-6xl mx-auto pb-12 px-4">
+      <main className="container  mx-auto pb-12 px-4">
         <div
           className={`${
             layout === "grid"

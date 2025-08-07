@@ -83,14 +83,14 @@ const FreeShipping = () => {
   return (
     <div className="flex flex-col min-h-screen hide-scrollbar h-screen overflow-y-scroll">
       <NavBarTop />
-      <div className="w-full bg-white text-gray-900">
+      <div className="w-full  mx-auto max-w-screen-2xl px-4 sm:px-6 md:px-10 py-10">
         <motion.section
           initial="hidden"
           animate="visible"
           variants={containerVariants}
-          className="w-full bg-gradient-to-r from-gray-50 to-gray-100 text-center pb-20"
+          className="w-full text-center pb-20"
         >
-          <div className="px-4 py-4 sm:px-6 sm:py-6 md:px-10 md:py-8 lg:px-20 lg:py-10">
+          <div className="mx-auto py-10  sm:py-16  md:py-16  lg:py-20 ">
             <GenBreadcrumb
               items={[
                 { label: "Home", to: "/main" },
@@ -109,10 +109,8 @@ const FreeShipping = () => {
             </p>
           </motion.div>
         </motion.section>
-
-        {/* Benefits Section */}
-        <section className="py-20 px-6 bg-white">
-          <div className="max-w-7xl mx-auto">
+        <section className="mx-auto py-20 bg-white">
+          <div className="">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -148,7 +146,7 @@ const FreeShipping = () => {
                         </CardTitle>
                       </div>
                     </CardHeader>
-                    <CardContent className="text-gray-600 text-left pb-6 px-6 group-hover:text-black">
+                    <CardContent className="text-gray-600 text-left pb-6  group-hover:text-black">
                       {benefit.description}
                     </CardContent>
                   </Card>
@@ -157,8 +155,6 @@ const FreeShipping = () => {
             </motion.div>
           </div>
         </section>
-
-        {/* Call to Action */}
         <motion.section
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

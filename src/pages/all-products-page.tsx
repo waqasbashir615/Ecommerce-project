@@ -69,8 +69,8 @@ const AllProducts = () => {
   return (
     <div>
       <NavBarTop />
-      <div className="py-8 w-[90%] mx-auto">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-900 mb-2 pt-6">
+      <div className="w-full mx-auto max-w-screen-2xl px-4 sm:px-6 md:px-10 lg:px-12 py-14">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-900 mb-2 pt-10">
           All Products
         </h2>
         <p className="text-center text-gray-600 mb-6 max-w-2xl mx-auto text-sm sm:text-base">
@@ -81,11 +81,13 @@ const AllProducts = () => {
             <GenBreadcrumb
               items={[
                 { label: "Home", to: "/main" },
-                { label: "All Premium Collection Products" },
+                { label: "Premium Collection" },
               ]}
             />
           </div>
-          <div className="w-full max-w-md mx-auto mb-6">
+          <div className="flex-1 max-w-md ml-4">
+            {" "}
+            {/* Changed this line */}
             <div className="relative">
               <Input
                 type="text"

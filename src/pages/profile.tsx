@@ -31,22 +31,22 @@ const tabs = [
 
 const UserProfile = () => {
   return (
-    <div className="mx-auto px-4 sm:px-6 py-4 bg-gray-50 hide-scrollbar h-screen overflow-y-scroll">
-      <div className="px-4 py-1 pt-4 md:px-10 lg:px-20 ">
-        <GenBreadcrumb
-          items={[
-            { label: "Home", to: "/main" },
-            { label: "Profile" }, // current page
-          ]}
-        />
-      </div>
-      <h1 className="flex items-center justify-center gap-2 text-2xl sm:text-3xl font-semibold text-black mb-4">
-        <User className="w-6 h-6" />
-        User Profile
-      </h1>
-      <div className="w-full px-4 sm:px-6 lg:w-[70%] mx-auto">
+    <div className=" px-4 sm:px-6 py-4 bg-gray-50 hide-scrollbar h-screen overflow-y-scroll">
+      <div className="container mx-auto w-full px-4 sm:px-6 ">
+        <div className="px-4 py-10 pt-4 ">
+          <GenBreadcrumb
+            items={[
+              { label: "Home", to: "/main" },
+              { label: "Profile" }, // current page
+            ]}
+          />
+        </div>
+        <h1 className="flex items-center justify-center gap-2 text-2xl sm:text-3xl font-semibold text-black mb-4">
+          <User className="w-6 h-6" />
+          User Profile
+        </h1>
         <Tabs defaultValue="overview" className="w-full space-y-6">
-          <div className="overflow-x-auto">
+          <div className="">
             <TabsList className="flex w-max gap-2 sm:grid sm:grid-cols-5 sm:w-full">
               {tabs.map(({ value, label, icon: Icon }) => (
                 <TabsTrigger
@@ -132,7 +132,7 @@ const UserProfile = () => {
                   </div>
                 ))}
               </div> */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {[
                   {
                     icon: ShoppingCart,

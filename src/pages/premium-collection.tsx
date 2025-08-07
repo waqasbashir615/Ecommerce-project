@@ -1,9 +1,10 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import { Card, CardContent } from "@/components/ui/card";
 import IMAGES from "@/assets/images";
 import { Link } from "react-router-dom";
+import type { KeenSliderInstance } from "keen-slider/react";
 import {
   Dialog,
   DialogContent,
@@ -12,7 +13,14 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 
-const products = [
+interface Product {
+  id: number;
+  name: string;
+  image: string;
+  price: string;
+}
+
+const products: Product[] = [
   { id: 1, name: "Backpack", image: IMAGES.BACKPACK, price: "$49" },
   { id: 2, name: "Beanie", image: IMAGES.BEANNIE, price: "$39" },
   { id: 3, name: "Glassses", image: IMAGES.BRA, price: "$29" },
@@ -32,240 +40,295 @@ const products = [
   { id: 17, name: "Vans", image: IMAGES.VANS, price: "$65" },
 ];
 
+const AUTO_PLAY_INTERVAL = 4000;
+const VISIBLE_DOTS = 5;
+
 const PremiumCollection = () => {
-  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
+  const autoPlayTimer = useRef<NodeJS.Timeout | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [loaded, setLoaded] = useState(false);
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<{
-    name: string;
-    image: string;
-    price: string;
-  } | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   const [sliderRef, sliderInstance] = useKeenSlider<HTMLDivElement>({
     loop: true,
     slides: {
       origin: "center",
-      perView: 2.2,
-      spacing: 6,
+      perView: 1.2,
+      spacing: 16,
     },
     breakpoints: {
-      "(min-width: 320px)": { slides: { perView: 1, spacing: 6 } },
-      "(min-width: 480px)": { slides: { perView: 2, spacing: 6 } },
-      "(min-width: 768px)": { slides: { perView: 3, spacing: 6 } },
-      "(min-width: 1024px)": { slides: { perView: 4, spacing: 6 } },
-      "(min-width: 1280px)": { slides: { perView: 5, spacing: 6 } },
+      "(min-width: 400px)": {
+        slides: {
+          perView: 1,
+          spacing: 16,
+        },
+      },
+      "(min-width: 640px)": {
+        slides: {
+          perView: 2,
+          spacing: 16,
+        },
+      },
+      "(min-width: 768px)": {
+        slides: {
+          perView: 3,
+          spacing: 10,
+        },
+      },
+      "(min-width: 1024px)": {
+        slides: {
+          perView: 4,
+          spacing: 10,
+        },
+      },
+      "(min-width: 1280px)": {
+        slides: {
+          perView: 5,
+          spacing: 16,
+        },
+      },
     },
     created(slider) {
-      setLoaded(true);
-      timer.current = setInterval(() => slider.next(), 3000);
+      setIsLoaded(true);
+      startAutoPlay(slider);
     },
     destroyed() {
-      if (timer.current) clearInterval(timer.current);
+      stopAutoPlay();
     },
     slideChanged(slider) {
       setCurrentSlide(slider.track.details.rel);
-      if (timer.current) clearInterval(timer.current);
-      timer.current = setInterval(() => slider.next(), 3000);
+      resetAutoPlay(slider);
     },
   });
 
-  const pauseAutoPlay = () => {
-    if (timer.current) clearInterval(timer.current);
+  const startAutoPlay = (slider: KeenSliderInstance) => {
+    stopAutoPlay();
+    autoPlayTimer.current = setInterval(() => {
+      slider.next();
+    }, AUTO_PLAY_INTERVAL);
   };
 
-  const resumeAutoPlay = () => {
-    if (sliderInstance.current) {
-      timer.current = setInterval(() => sliderInstance.current?.next(), 3000);
+  const stopAutoPlay = () => {
+    if (autoPlayTimer.current) {
+      clearInterval(autoPlayTimer.current);
+      autoPlayTimer.current = null;
     }
   };
 
-  const handleAddToCart = (product: { name: string; image: string; price: string }) => {
-    setSelectedProduct(product);
-    setDialogOpen(true);
-    pauseAutoPlay();
+  const resetAutoPlay = (slider: KeenSliderInstance) => {
+    stopAutoPlay();
+    startAutoPlay(slider);
   };
 
-  const visibleDots = 5;
+  const handleMouseEnter = () => {
+    stopAutoPlay();
+  };
+
+  const handleMouseLeave = () => {
+    if (sliderInstance.current) {
+      startAutoPlay(sliderInstance.current);
+    }
+  };
+
+  const handleAddToCart = (product: Product) => {
+    setSelectedProduct(product);
+    setIsDialogOpen(true);
+    stopAutoPlay();
+  };
+
+  const handleDialogClose = () => {
+    setIsDialogOpen(false);
+    if (sliderInstance.current) {
+      startAutoPlay(sliderInstance.current);
+    }
+  };
+
+  // Clean up timer on unmount
+  useEffect(() => {
+    return () => {
+      stopAutoPlay();
+    };
+  }, []);
 
   return (
-    <div className="my-16 px-6">
-      <div className="mx-auto">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-2 text-gray-900">
-          Premium Collection
-        </h2>
-        <p className="text-center text-gray-600 max-w-2xl mx-auto text-xs sm:text-sm md:text-base px-2">
-          Discover our exclusive range of products
-        </p>
-
+    <section
+      className="py-16 bg-gray-100"
+      aria-labelledby="premium-collection-heading"
+    >
+      <div className="px-4">
+        <div className="text-center mb-12">
+          <h2
+            id="premium-collection-heading"
+            className="text-3xl md:text-4xl font-bold text-gray-900 mb-2"
+          >
+            Premium Collection
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto text-sm md:text-base">
+            Discover our exclusive range of products
+          </p>
+        </div>
         <div
           ref={sliderRef}
-          className="keen-slider mt-6 sm:mt-10"
-          onMouseEnter={pauseAutoPlay}
-          onMouseLeave={resumeAutoPlay}
+          className="keen-slider"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          aria-live="polite"
         >
           {products.map((product) => (
             <div
               key={product.id}
-              className="keen-slider__slide py-8 px-1 sm:px-2"
-              onMouseEnter={pauseAutoPlay}
-              onMouseLeave={resumeAutoPlay}
+              className="keen-slider__slide"
+              aria-roledescription="slide"
+              aria-label={`${product.name} - ${product.price}`}
             >
-              <Link to={`/all-products-page/`}>
-                <Card className="rounded-xl sm:rounded-2xl bg-white border border-gray-200 shadow-md sm:shadow-lg overflow-hidden transition-all duration-300 hover:shadow-lg sm:hover:shadow-xl hover:-translate-y-1 relative cursor-pointer">
-                  <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-white rounded-full px-2 sm:px-3 py-0.5 sm:py-1 text-xs font-medium shadow-sm border border-gray-300">
-                    New
-                  </div>
-                  <CardContent className="p-4 sm:p-6 space-y-3 sm:space-y-4">
-                    <div className="relative h-48 sm:h-60 w-full overflow-hidden rounded-lg sm:rounded-xl flex items-center justify-center group">
+              <Card className="h-full rounded-xl bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300">
+                <div className="absolute top-6 right-4 bg-white rounded-full px-2 py-1 text-xs font-medium shadow-sm border border-gray-300">
+                  New
+                </div>
+                <CardContent className="p-4 flex flex-col h-full">
+                  <Link
+                    to={`/all-products-page/${product.id}`}
+                    className="block flex-grow"
+                    aria-label={`View details for ${product.name}`}
+                  >
+                    <div className="relative h-48 w-full mb-4 overflow-hidden rounded-lg flex items-center justify-center">
                       <img
                         src={product.image}
                         alt={product.name}
-                        className="w-full h-64 px-3 object-contain transition-transform duration-500 group-hover:scale-105"
+                        className="w-full h-full object-contain transition-transform duration-300 hover:scale-105"
+                        loading="lazy"
                       />
                     </div>
-                    <div className="pt-2 sm:pt-3">
-                      <h3 className="text-lg sm:text-xl font-bold text-gray-900">
-                        {product.name}
-                      </h3>
-                      <div className="flex justify-between items-center mt-2 sm:mt-3">
-                        <p className="text-gray-500 font-semibold text-base sm:text-lg">
-                          {product.price}
-                        </p>
-                        <div className="border border-black rounded-lg p-1 hover:bg-black cursor-pointer">
-                          <button
-                            className="text-xs sm:text-sm bg-black text-white px-2 sm:px-3 py-1 sm:py-2 rounded-lg hover:bg-gray-800 transition-all duration-200"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              handleAddToCart(product);
-                            }}
-                          >
-                            Add to Cart
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                      {product.name}
+                    </h3>
+                  </Link>
+                  <div className="mt-auto flex justify-between items-center">
+                    <span className="text-gray-800 font-medium">
+                      {product.price}
+                    </span>
+                      <div className="border border-black rounded-lg p-1 hover:bg-black cursor-pointer">
+                    <Button
+                      size="sm"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleAddToCart(product);
+                      }}
+                      className="bg-black hover:bg-black text-white"
+                    >
+                      Add to Cart
+                    </Button>
+                  </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           ))}
         </div>
 
-        {loaded && sliderInstance.current && (
-          <div className="hidden md:flex justify-center space-x-2 ">
-            {Array.from({ length: visibleDots }).map((_, idx) => {
+        {isLoaded && sliderInstance.current && (
+          <div className="flex justify-center mt-8 space-x-2">
+            {Array.from({ length: VISIBLE_DOTS }).map((_, idx) => {
               const totalSlides =
                 sliderInstance.current!.track.details.slides.length;
-              const step = totalSlides / visibleDots;
-              const realIdx = Math.round(idx * step);
+              const slideIndex = Math.round(
+                (idx / (VISIBLE_DOTS - 1)) * (totalSlides - 1)
+              );
+              const isActive = currentSlide === slideIndex;
+
               return (
                 <button
                   key={idx}
                   onClick={() => {
-                    sliderInstance.current?.moveToIdx(realIdx);
-                    pauseAutoPlay();
+                    sliderInstance.current?.moveToIdx(slideIndex);
+                    stopAutoPlay();
                   }}
-                  className={`h-3 rounded-full transition-all duration-300 ${
-                    currentSlide === realIdx
-                      ? "w-6 bg-black"
-                      : "w-4 border border-gray-500 hover:bg-gray-400"
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    isActive
+                      ? "bg-black scale-125 w-6"
+                      : "bg-gray-300 hover:bg-gray-400"
                   }`}
-                  aria-label={`Go to slide ${realIdx + 1}`}
+                  aria-label={`Go to slide ${slideIndex + 1}`}
+                  aria-current={isActive}
                 />
               );
             })}
           </div>
         )}
-        <div className="max-w-max mx-auto text-center mt-8 border border-black rounded-lg p-1 hover:bg-black cursor-pointer">
+
+        <div className="text-center mt-10">
           <Link
             to="/all-products-page"
-            className="inline-block px-6 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
+            className="inline-block px-6 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors border border-black hover:border-gray-800"
           >
             View All Products
           </Link>
         </div>
       </div>
 
-      {/* Cart Modal */}
-      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent className="sm:max-w-[425px] bg-white p-6 rounded-lg shadow-lg">
+      <Dialog open={isDialogOpen} onOpenChange={handleDialogClose}>
+        <DialogContent className="sm:max-w-[425px] bg-white">
           <DialogHeader>
-            <DialogTitle className="text-center text-xl font-bold text-gray-900">
+            <DialogTitle className="text-center">
               Added to your cart!
             </DialogTitle>
           </DialogHeader>
-          
-          <div className="mt-4 space-y-4">
-            {/* Product Summary */}
-            {selectedProduct && (
-              <div className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg">
+
+          {selectedProduct && (
+            <div className="mt-6 space-y-6">
+              <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
                 <div className="w-20 h-20 flex-shrink-0">
-                  <img 
-                    src={selectedProduct.image} 
+                  <img
+                    src={selectedProduct.image}
                     alt={selectedProduct.name}
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <div className="flex-1">
-                  <h4 className="font-medium text-gray-900">{selectedProduct.name}</h4>
-                  <p className="text-sm text-gray-600">{selectedProduct.price}</p>
+                <div>
+                  <h4 className="font-medium">{selectedProduct.name}</h4>
+                  <p className="text-gray-600">{selectedProduct.price}</p>
                 </div>
               </div>
-            )}
 
-            {/* Order Summary */}
-            <div className="border-t border-gray-200 pt-4">
-              <h5 className="font-medium text-gray-900 mb-2">Order Summary</h5>
-              <div className="space-y-2 text-sm">
+              <div className="space-y-4">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Subtotal</span>
-                  <span className="font-medium">
-                    {selectedProduct?.price}
-                  </span>
+                  <span>Subtotal</span>
+                  <span className="font-medium">{selectedProduct.price}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Shipping</span>
+                  <span>Shipping</span>
                   <span className="font-medium">Free</span>
                 </div>
-                <div className="flex justify-between border-t border-gray-200 pt-2">
-                  <span className="text-gray-900 font-medium">Total</span>
-                  <span className="font-bold text-gray-900">
-                    {selectedProduct?.price}
-                  </span>
+                <div className="flex justify-between pt-4 border-t border-gray-200">
+                  <span className="font-bold">Total</span>
+                  <span className="font-bold">{selectedProduct.price}</span>
                 </div>
               </div>
-            </div>
 
-            {/* Action Buttons */}
-            <div className="flex gap-3 pt-4">
-              <Button
-                onClick={() => {
-                  setDialogOpen(false);
-                  resumeAutoPlay();
-                }}
-                variant="outline"
-                className="flex-1 border-gray-300 hover:bg-gray-100 text-gray-800"
-              >
-                Continue Shopping
-              </Button>
-              <Button
-                onClick={() => {
-                  setDialogOpen(false);
-                  resumeAutoPlay();
-                  // Navigate to cart page would go here
-                }}
-                className="flex-1 bg-black hover:bg-gray-800 text-white"
-              >
-                View Cart
-              </Button>
+              <div className="flex gap-3 pt-4">
+                <Button
+                  variant="outline"
+                  onClick={handleDialogClose}
+                  className="flex-1"
+                >
+                  Continue Shopping
+                </Button>
+                <Button
+                  onClick={() => {
+                    handleDialogClose();
+                    // Navigation to cart would go here
+                  }}
+                  className="flex-1 bg-black text-white hover:bg-gray-800"
+                >
+                  View Cart
+                </Button>
+              </div>
             </div>
-          </div>
+          )}
         </DialogContent>
       </Dialog>
-    </div>
+    </section>
   );
 };
 

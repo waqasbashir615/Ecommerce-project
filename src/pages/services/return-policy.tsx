@@ -57,13 +57,16 @@ const EasyReturns = () => {
   return (
     <div className="flex flex-col min-h-screen hide-scrollbar h-screen overflow-y-scroll">
       <NavBarTop />
-      <div className="px-4 py-4 sm:px-6 sm:py-6 md:px-10 md:py-8 lg:px-20 lg:py-10">
-        <GenBreadcrumb
-          items={[{ label: "Home", to: "/main" }, { label: "Return Policy" }]}
-        />
-      </div>
-      <section className="w-full bg-white px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
+      <section className="w-full mx-auto max-w-screen-2xl px-4 sm:px-6 md:px-10 py-10">
+        <div className="mx-auto ">
+          <div className="py-14 sm:py-14 md:py-14 lg:py-16">
+            <GenBreadcrumb
+              items={[
+                { label: "Home", to: "/main" },
+                { label: "Return Policy" },
+              ]}
+            />
+          </div>
           <div className="text-center mb-12">
             <div className="group mx-auto bg-gray-100 p-4 rounded-full w-20 h-20 flex items-center justify-center mb-6 shadow-md hover:shadow-lg transition-shadow">
               <RefreshCw className="w-8 h-8 text-black group-hover:animate-spin transition-transform duration-700" />
@@ -85,7 +88,7 @@ const EasyReturns = () => {
                 },
               },
             }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
           >
             {steps.map((step, index) => (
               <motion.div

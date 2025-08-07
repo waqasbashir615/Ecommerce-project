@@ -13,16 +13,11 @@ interface Props {
   category: string;
 }
 
+// Array of all available local images (without name matching)
 const localImages = [
-  IMAGES.LOGINPAGE,
   IMAGES.BACKPACK,
   IMAGES.BEANNIE,
   IMAGES.BRA,
-  IMAGES.FAX,
-  IMAGES.HIGHHEELS,
-  IMAGES.TIES,
-  IMAGES.PARTY,
-  IMAGES.COAT,
   IMAGES.BRIEFS,
   IMAGES.DRESS,
   IMAGES.FLIP,
@@ -37,43 +32,7 @@ const localImages = [
   IMAGES.SOCKS,
   IMAGES.TANKTOP,
   IMAGES.VANS,
-  IMAGES.MEN2,
-  IMAGES.MEN3,
-  IMAGES.MEN4,
-  IMAGES.MEN5,
-  IMAGES.MEN6,
-  IMAGES.MEN7,
-  IMAGES.LOGO,
-  IMAGES.IMG3,
-  IMAGES.IMG4,
-  IMAGES.IMG5,
-  IMAGES.GIRL,
-  IMAGES.BAG,
-  IMAGES.WATCH,
-  IMAGES.HEADPHONE,
-  IMAGES.SHOES,
-  IMAGES.SHOESS,
-  IMAGES.SHOESV,
-  IMAGES.TROSER1,
-  IMAGES.TROSER2,
-  IMAGES.BANNER1,
-  IMAGES.BANNER2,
-  IMAGES.IMG18,
-  IMAGES.IMG19,
-  IMAGES.IMG20,
-  IMAGES.IMG21,
-  IMAGES.IMG22,
-  IMAGES.IMG23,
-  IMAGES.IMG24,
-  IMAGES.IMG25,
-  IMAGES.MENS_CLOTHING,
-  IMAGES.PAYPAL,
-  IMAGES.SkrillLogo,
-  IMAGES.GOOGLEPAY,
-  IMAGES.VISA,
-  IMAGES.MASTER,
 ];
-
 
 const CategoryProductList = ({ category }: Props) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -104,7 +63,7 @@ const CategoryProductList = ({ category }: Props) => {
     );
 
   return (
-    <div className="max-w-7xl mx-auto px-6">
+    <div className="w-full mx-auto">
       {/* Search Bar */}
       <div className="w-full max-w-md mx-auto mb-6">
         <div className="relative">
@@ -113,21 +72,20 @@ const CategoryProductList = ({ category }: Props) => {
             placeholder="Search products..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full p-4 pr-28 rounded-lg border border-black-400 shadow-sm focus:ring-2 focus:black focus:outline-none transition-all"
+            className="w-full px-4 py-3 pr-28 rounded-lg border border-black-400 shadow-sm focus:ring-2 focus:black focus:outline-none transition-all"
           />
           <Button className="absolute cursor-pointer top-1/2 right-1 -translate-y-1/2 bg-black text-white h-7 px-4 rounded-md hover:bg-gray-800 active:bg-gray-900 transition-all shadow-md hover:shadow-lg">
             <Search />
           </Button>
         </div>
       </div>
-
       {/* Product Grid */}
       {filteredProducts.length === 0 ? (
         <p className="text-center text-gray-500 text-lg my-16">
           No products found.
         </p>
       ) : (
-        <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {filteredProducts.map((product) => (
             <Card
               key={product.id}

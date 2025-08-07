@@ -11,24 +11,20 @@ import PremiumCollection from "./premium-collection";
 
 const Mainpage = () => {
   return (
-    <div className="bg-white hide-scrollbar h-screen">
+    <div className="bg-white hide-scrollbar min-h-screen flex flex-col">
       <NavBarTop />
       <HeroSection />
-      <div className="w-full p-5 lg:p-0 lg:w-[70%] mx-auto ">
+      {/* Main Content Container */}
+      <main className="w-full max-w-screen-2xl mx-auto flex-1 md:px-10 px-6">
         <Cetagories />
         <Trending />
-      </div>
-      <div className="w-full mx-auto ">
         <PremiumCollection />
-      </div>
-      <div className="w-full p-5 lg:p-0 lg:w-[70%] mx-auto ">
         <BestSeller />
         <LatestBlogs />
-      </div>
-      <FollowUs />
-      <div className="w-full p-5 lg:p-0 lg:w-[70%] mx-auto">
+        <FollowUs />
         <Services />
-      </div>
+      </main>
+
       <Footer />
     </div>
   );

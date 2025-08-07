@@ -60,7 +60,7 @@ const localImages = [
   IMAGES.GOOGLEPAY,
   IMAGES.VISA,
   IMAGES.MASTER,
-];// Expand or customize based on your image pool
+]; // Expand or customize based on your image pool
 
 const CategoryPage = () => {
   const { data: categories, isLoading: catLoading } = useGetCategoriesQuery();
@@ -82,7 +82,7 @@ const CategoryPage = () => {
 
   return (
     <div className="mx-auto py-10">
-      <div className="max-w-6xl mx-auto">
+      <div className="">
         {/* Header */}
         <div className="text-center mb-10">
           <h1 className="text-3xl font-bold mb-2 text-gray-900">

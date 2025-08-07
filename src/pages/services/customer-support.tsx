@@ -70,7 +70,8 @@ const ContactFaqSection = () => {
   return (
     <div className="hide-scrollbar h-screen overflow-y-scroll">
       <NavBarTop />
-      <div className="px-4 py-4 sm:px-6 sm:py-6 md:px-10 md:py-8 lg:px-20 lg:py-10">
+      <div className="w-full mx-auto max-w-screen-2xl px-4 sm:px-6 md:px-10 py-20">
+      <div className="py-4 sm:py-6 md:py-8 lg:py-10">
         <GenBreadcrumb
           items={[
             { label: "Home", to: "/main" },
@@ -78,7 +79,6 @@ const ContactFaqSection = () => {
           ]}
         />
       </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-12 lg:py-16">
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">
             Contact Our Friendly Team
@@ -131,7 +131,7 @@ const ContactFaqSection = () => {
             );
           })}
         </motion.div>
-        <div className="p-4 sm:p-6 md:p-8">
+        <div className="py-4 sm:py-6 md:py-8">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 sm:mb-8 text-center">
             Frequently Asked Questions
           </h2>

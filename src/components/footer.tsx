@@ -11,8 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import IMAGES from "@/assets/images";
 
-const Footer = () => {
-  // Data for footer sections to make the code more maintainable
+// Data for footer sections to make the code more maintainable
   const sections = [
     {
       title: "Categories",
@@ -64,9 +63,12 @@ const Footer = () => {
     },
   ];
 
+const Footer = () => {
+  
+
   return (
-    <footer className="bg-gray-50 text-gray-800 py-10">
-      <div className="w-full p-5 lg:p-0 lg:w-[90%] mx-auto ">
+    <footer className="bg-gray-50 text-gray-800 ">
+      <div className="w-full p-5 md:px-10 sm:px-5 mx-auto max-w-screen-2xl">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
           {/* Brand & Contact */}
           <div className="space-y-4">
