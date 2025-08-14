@@ -1,5 +1,4 @@
 // components/NavBarTop.tsx
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, Search, Heart, ShoppingCart, User } from "lucide-react";
@@ -11,6 +10,8 @@ import { useAppSelector } from "@/store/hooks";
 const NavBarTop = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const wishlistCount = useAppSelector((state) => state.wishlist.items.length);
+  const cartItems = useAppSelector((state) => state.cart.items);
+  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <header className="fixed top-0 w-full bg-white/70 backdrop-blur-md shadow-sm z-15">
@@ -48,12 +49,14 @@ const NavBarTop = () => {
             </div>
 
             {/* Cart */}
-            <CartSheet itemCount={3}>
+            <CartSheet>
               <div className="relative hidden sm:block">
                 <ShoppingCart className="w-5 h-5 text-gray-700 hover:scale-110 transition" />
-                <span className="absolute -top-1 -right-2 bg-black text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-                  2
-                </span>
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-2 bg-black text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
               </div>
             </CartSheet>
 
@@ -100,7 +103,7 @@ const NavBarTop = () => {
                 onClick={() => setIsMenuOpen(false)}
                 className="flex items-center gap-2"
               >
-                <ShoppingCart className="w-4 h-4" /> Cart
+                <ShoppingCart className="w-4 h-4" /> Cart ({cartCount})
               </Link>
             </div>
           </div>

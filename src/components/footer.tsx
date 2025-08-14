@@ -1,10 +1,3 @@
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaLinkedinIn,
-  FaPinterestP,
-  FaXTwitter,
-} from "react-icons/fa6";
 import { MdEmail, MdLocationOn, MdPhone } from "react-icons/md";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -12,63 +5,73 @@ import { Link } from "react-router-dom";
 import IMAGES from "@/assets/images";
 
 // Data for footer sections to make the code more maintainable
-  const sections = [
-    {
-      title: "Categories",
-      links: [
-        { text: "Men", to: "/mens-clothing" },
-        { text: "Women", to: "/women-clothing" },
-        { text: "Accessories", to: "/category" },
-        { text: "jawellary", to: "/jawellary" },
-        { text: "Watch", to: "/electronics" },
-        { text: "Dress", to: "/category" },
-      ],
-    },
-    {
-      title: "Information",
-      links: [
-        { text: "About us", to: "/customer-support" },
-        { text: "Contact us", to: "/customer-support" },
-        { text: "Terms & Conditions", to: "/return-policy" },
-        { text: "Returns & Exchanges", to: "/return-policy" },
-        { text: "Shipping & Delivery", to: "/free-shapping" },
-        { text: "Privacy Policy", to: "/secure-payments" },
-      ],
-    },
-    {
-      title: "Useful links",
-      links: [
-        { text: "Latest News", to: "/category" },
-        { text: "My Account", to: "/profile" },
-        { text: "Size Guide", to: "/customer-support" },
-        { text: "FAQs", to: "/customer-support" },
-      ],
-    },
-  ];
+const sections = [
+  {
+    title: "Categories",
+    links: [
+      { text: "Men", to: "/mens-clothing" },
+      { text: "Women", to: "/women-clothing" },
+      { text: "Accessories", to: "/category" },
+      { text: "jawellary", to: "/jawellary" },
+      { text: "Watch", to: "/electronics" },
+      { text: "Dress", to: "/category" },
+    ],
+  },
+  {
+    title: "Information",
+    links: [
+      { text: "About us", to: "/customer-support" },
+      { text: "Contact us", to: "/customer-support" },
+      { text: "Terms & Conditions", to: "/return-policy" },
+      { text: "Returns & Exchanges", to: "/return-policy" },
+      { text: "Shipping & Delivery", to: "/free-shapping" },
+      { text: "Privacy Policy", to: "/secure-payments" },
+    ],
+  },
+  {
+    title: "Useful links",
+    links: [
+      { text: "Latest News", to: "/category" },
+      { text: "My Account", to: "/profile" },
+      { text: "Size Guide", to: "/customer-support" },
+      { text: "FAQs", to: "/customer-support" },
+    ],
+  },
+];
 
-  const socialLinks = [
-    { icon: <FaFacebookF aria-label="Facebook" />, to: "https://facebook.com" },
-    { icon: <FaXTwitter aria-label="Twitter" />, to: "https://twitter.com" },
-    {
-      icon: <FaInstagram aria-label="Instagram" />,
-      to: "https://instagram.com",
-    },
-    {
-      icon: <FaLinkedinIn aria-label="LinkedIn" />,
-      to: "https://linkedin.com",
-    },
-    {
-      icon: <FaPinterestP aria-label="Pinterest" />,
-      to: "https://pinterest.com",
-    },
-  ];
+const socialLinks = [
+  {
+    img: IMAGES.FACEBOOK,
+    to: "https://facebook.com",
+    alt: "Facebook",
+  },
+  {
+    img: IMAGES.TWITTER,
+    to: "https://twitter.com",
+    alt: "Twitter",
+  },
+  {
+    img: IMAGES.INSTAGRAM,
+    to: "https://instagram.com",
+    alt: "Instagram",
+  },
+  {
+    img: IMAGES.LINKEDIN,
+    to: "https://linkedin.com",
+    alt: "LinkedIn",
+  },
+  // Add Pinterest if you have the image in your IMAGES
+  // {
+  //   img: IMAGES.PINTEREST,
+  //   to: "https://pinterest.com",
+  //   alt: "Pinterest"
+  // },
+];
 
 const Footer = () => {
-  
-
   return (
     <footer className="bg-gray-50 text-gray-800 ">
-      <div className="w-full p-5 md:px-10 sm:px-5 mx-auto max-w-screen-2xl">
+      <div className="w-full p-5 pt-10 md:px-10 sm:px-5 mx-auto max-w-screen-2xl">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
           {/* Brand & Contact */}
           <div className="space-y-4">
@@ -107,9 +110,19 @@ const Footer = () => {
                   href={social.to}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-700 hover:text-black transition-colors text-xl"
+                  className="group"
+                  aria-label={social.alt} 
                 >
-                  {social.icon}
+                  {social.img && (
+                    <div className="relative w-10 h-10 transition-all duration-300 ease-in-out group-hover:scale-110">
+                      <img
+                        src={social.img}
+                        alt={social.alt}
+                        className="w-full h-full object-contain transition-all duration-300 ease-in-out"
+                      />
+                      <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-30 bg-gray-300 transition-opacity duration-300"></div>
+                    </div>
+                  )}
                 </a>
               ))}
             </div>
@@ -161,33 +174,33 @@ const Footer = () => {
 
             <div className="flex flex-wrap items-center gap-3">
               <img
-                src={IMAGES.PAYPAL}
+                src={IMAGES.CARD}
                 alt="PayPal"
-                className="size-4 w-auto object-contain"
+                className="size-10 w-auto object-contain"
                 loading="lazy"
               />
               <img
-                src={IMAGES.SkrillLogo}
+                src={IMAGES.CREDITCARD}
                 alt="Skrill"
-                className="size-4 w-auto object-contain"
+                className="size-6 w-auto object-contain"
                 loading="lazy"
               />
               <img
-                src={IMAGES.GOOGLEPAY}
+                src={IMAGES.SCUREPAYMENT}
                 alt="Google Pay"
-                className="size-4 w-auto object-contain"
+                className="size-8 w-auto object-contain"
                 loading="lazy"
               />
               <img
                 src={IMAGES.VISA}
                 alt="Visa"
-                className="size-4 w-auto object-contain"
+                className="size-8 w-auto object-contain"
                 loading="lazy"
               />
               <img
                 src={IMAGES.MASTER}
                 alt="MasterCard"
-                className="size-4 w-auto object-contain"
+                className="size-8 w-auto object-contain"
                 loading="lazy"
               />
             </div>

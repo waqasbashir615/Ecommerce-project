@@ -4,12 +4,14 @@ import {
   CheckCircle,
   XCircle,
   RotateCcw,
+  Clock,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import NavBarTop from "../nav-bar";
 import Footer from "@/components/footer";
 import GenBreadcrumb from "../generic-components/gen-breadcrumb";
 import { motion } from "framer-motion";
+import IMAGES from "@/assets/images";
 
 const steps = [
   {
@@ -59,7 +61,7 @@ const EasyReturns = () => {
       <NavBarTop />
       <section className="w-full mx-auto max-w-screen-2xl px-4 sm:px-6 md:px-10 py-10">
         <div className="mx-auto ">
-          <div className="py-14 sm:py-14 md:py-14 lg:py-16">
+          <div className="pt-14 pb-6">
             <GenBreadcrumb
               items={[
                 { label: "Home", to: "/main" },
@@ -67,7 +69,51 @@ const EasyReturns = () => {
               ]}
             />
           </div>
-          <div className="text-center mb-12">
+          {/* Hero Section */}
+          <motion.section
+            className="relative w-full py-8 md:py-12 mx-auto flex flex-col md:flex-row items-center justify-between gap-8 bg-gradient-to-r from-gray-500 to-gray-800 rounded-xl overflow-hidden px-6 md:px-12 text-white"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="relative z-10 max-w-2xl">
+              <motion.h1
+                className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.2 }}
+              >
+                Easy Returns, Friendly Support
+              </motion.h1>
+              <motion.p
+                className="text-lg md:text-xl mb-6 text-gray-300"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.4 }}
+              >
+                Our support team is ready to assist you with any questions or issues during your return process.
+              </motion.p>
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.6 }}
+                className="flex items-center gap-2 text-sm md:text-base bg-white/10 rounded-full px-4 py-2 w-fit"
+              >
+                <Clock className="w-4 h-4" />
+                <span>Average response time: 2 hours</span>
+              </motion.div>
+            </div>
+            <motion.img
+              src={IMAGES.RETURNORDER}
+              alt="Support team"
+              className="relative z-10 h-48 md:h-64 lg:h-70 object-contain"
+              initial={{ x: 50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            />
+          </motion.section>
+
+          <div className="text-center my-12">
             <div className="group mx-auto bg-gray-100 p-4 rounded-full w-20 h-20 flex items-center justify-center mb-6 shadow-md hover:shadow-lg transition-shadow">
               <RefreshCw className="w-8 h-8 text-black group-hover:animate-spin transition-transform duration-700" />
             </div>

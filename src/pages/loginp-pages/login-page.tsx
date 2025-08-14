@@ -89,6 +89,28 @@ const LoginPage = () => {
     }
   };
 
+  // Guest login function
+  const handleGuestLogin = async () => {
+    setLoading(true);
+    try {
+      const guestEmail = "mor_2314";
+      const guestPassword = "83r5^_";
+
+      const response = await loginUser({
+        username: guestEmail,
+        password: guestPassword,
+      }).unwrap();
+
+      dispatch(login(response.token));
+      toast.success("Logged in as Guest!");
+      navigate("/main", { replace: true });
+    } catch (error) {
+      toast.error("Guest login failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gray-50">
       <div className="w-full max-w-4xl flex flex-col md:flex-row shadow-lg rounded-lg overflow-hidden">
@@ -162,8 +184,10 @@ const LoginPage = () => {
                 <Button
                   variant="outline"
                   className="w-full border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-900"
+                  onClick={handleGuestLogin}
+                  disabled={loading}
                 >
-                  CONTINUE AS A GUEST
+                  {loading ? "Loading..." : "CONTINUE AS A GUEST"}
                 </Button>
               </div>
             </CardFooter>

@@ -8,6 +8,7 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import { api } from "./services/core";
 import authReducer, { type AuthState } from "./slice/auth";
 import wishlistReducer from "./slice/wishlist-list"; // ✅ added
+import cartReducer from "./slice/cart-slice"; // ✅ added
 
 const persistConfig = {
   key: "auth",
@@ -21,6 +22,7 @@ const store = configureStore({
     [api.reducerPath]: api.reducer,
     auth: persistedAuthReducer,
     wishlist: wishlistReducer, // ✅ added here
+     cart: cartReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }).concat(api.middleware),

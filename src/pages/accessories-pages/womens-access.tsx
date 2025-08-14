@@ -8,8 +8,7 @@ const WomensClothing = () => {
     <div>
       <NavBarTop />
       <div className="w-full mx-auto max-w-screen-2xl px-4 sm:px-6 md:px-10 py-10">
-        <div className="py-10 sm:py-12 lg:py-20 xl:py-24">
-          {/* Breadcrumb */}
+        <div className="py-10 sm:py-12 lg:py-16 xl:py-16">
           <GenBreadcrumb
             items={[
               { label: "Home", to: "/main" },

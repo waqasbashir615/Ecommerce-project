@@ -27,12 +27,11 @@ import men4 from "./men4.webp";
 import men5 from "./men5.webp";
 import men6 from "./men6.webp";
 import men7 from "./men7.webp";
-import loginpage from "./loginpage.jpg";
+import loginpage from "./loginpage22.jpg";
 import MensClothing from "./mens-clothing.jpg";
-import Payapl from "./paypal.svg";
+import Loginway from "../images/loginway.jpg";
 import SkrillLogo from "./skrill-logo.svg";
 import GooglePay from "./google-pay.svg";
-import VisaCard from "./visa.svg";
 import MasterCard from "./master-card.svg";
 import BackPack from "../images/svg-icons/backpack.svg";
 import Beannie from "../images/svg-icons/beannie.svg";
@@ -54,8 +53,29 @@ import Vans from "../images/svg-icons/vans.svg";
 import Coat from "../images/svg-icons/coat.svg";
 import Party from "../images/svg-icons/party.svg";
 import Ties from "../images/svg-icons/ties.svg";
+import Facebook from "../images/svg-icons/Facebook.png";
+import LinkedIn from "../images/svg-icons/LinkedIn.png";
+import Whatsapp from "../images/svg-icons/Whatsapp.png";
+import Instagram from "../images/svg-icons/Instagram.png";
+import Twitter from "../images/svg-icons/Twitter.png";
 import HighHeels from "../images/svg-icons/high-heels.svg";
 import Fax from "../images/svg-icons/fax.svg";
+import Paypal from "../images/svg-icons/paypal.png";
+import Visa from "../images/svg-icons/visa.png";
+import CreditCard from "../images/svg-icons/credit-card.png";
+import Card from "../images/svg-icons/card.png";
+import SeurePayment from "../images/svg-icons/secure-payment.png";
+import discounts from "../images/discounts.png";
+import Pngtre from "../images/pngtre.png";
+import Shiping from "../images/shiping.png";
+import Dropship from "../images/dropship.png";
+import WomenGal from "../images/women-gal.png";
+import WomenShiping2 from "../images/women-ship2.jpg";
+import LiveChatting from "../images/live-chat.svg";
+import ChatBot from "../images/Chat-bot.svg";
+import ReturnOrder from "../images/return-Order.png";
+import ScurePayment from "../images/secure-payment.png";
+import FaqIcon from "../images/faq-icon.png";
 
 
 interface ImageMap {
@@ -66,12 +86,35 @@ const IMAGES: ImageMap = {
   // svg icons
   LOGINPAGE :loginpage,
   BACKPACK:BackPack,
+  WOMENGAL: WomenGal,
+  // DELIVERY: Delivery,
+  RETURNORDER: ReturnOrder,
+  SEUREPAYMENT: SeurePayment,
+  CREDITCARD: CreditCard,
+  CARD: Card,
+  PAYPAL: Paypal,
+  VISA: Visa,
+  LOGINWAY: Loginway,
+  FACEBOOK: Facebook,
+  LINKEDIN: LinkedIn,
+  WHATSAPP: Whatsapp,
+  INSTAGRAM: Instagram,
+  TWITTER: Twitter,
   BEANNIE:Beannie,
+  FAQICON: FaqIcon,
+  CHATBOT: ChatBot,
+  LIVECHAT: LiveChatting,
+  WOMENSHIP2: WomenShiping2,
+  SCUREPAYMENT: ScurePayment,
   BRA:Bra,
   FAX:Fax,
+  DISCOUNTS: discounts,
+  PNGTRE: Pngtre,
+  SHIPING: Shiping,
   HIGHHEELS:HighHeels,
   TIES:Ties,
   PARTY:Party,
+  DROPSHIP: Dropship,
   COAT:Coat,
   BRIEFS: Briefs,
   DRESS:Dress,
@@ -117,10 +160,8 @@ const IMAGES: ImageMap = {
   IMG24: img24,
   IMG25: img25,
   MENS_CLOTHING: MensClothing,
-  PAYPAL: Payapl,
   SkrillLogo: SkrillLogo,
   GOOGLEPAY: GooglePay,
-  VISA: VisaCard,
   MASTER: MasterCard,
   HEADPHONE:Headphone,
 };

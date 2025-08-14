@@ -3,7 +3,7 @@ import TopNavBar from "../pages/nav-bar";
 import Footer from "./footer";
 import { useState } from "react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Loader2, Search, Star } from "lucide-react";
+import { Clock, Loader2, Search, Star } from "lucide-react";
 import { FaHeart } from "react-icons/fa";
 import { CiHeart, CiShare2 } from "react-icons/ci";
 import { useGetProductsQuery } from "@/store/services/fake-store-api";
@@ -11,8 +11,10 @@ import CartDialog from "./cart-dialog";
 import EditCartForm from "./edit-cart-form";
 import AddCartForm from "./add-cart-form";
 import { Input } from "./ui/input";
+import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import GenBreadcrumb from "@/pages/generic-components/gen-breadcrumb";
+import IMAGES from "@/assets/images";
 
 const WishListPage = () => {
   const { data: products, isLoading, isError } = useGetProductsQuery();
@@ -48,8 +50,77 @@ const WishListPage = () => {
     );
 
   return (
-    <div className="min-h-screen flex flex-col pt-10 ">
+    <div className="min-h-screen flex flex-col">
       <TopNavBar />
+      <div className="w-full mx-auto max-w-screen-2xl px-4 sm:px-6 md:px-10 ">
+        {/* <div className="w-full mx-auto max-w-screen-2xl  relative flex items-center justify-between px-4 sm:px-6 min-h-[160px] sm:min-h-[200px] bg-gray-200 mt-30">
+          <img
+            src={IMAGES.PNGTRE}
+            alt="School supplies"
+            className="h-auto w-[120px] sm:w-[200px] md:w-[250px] lg:w-[400px] object-contain z-10"
+          />
+          <div className="hidden sm:block">
+            <img
+              src={IMAGES.DISCOUNTS}
+              alt="Discount tag"
+              className="h-auto w-[120px] sm:w-[200px] md:w-[250px] lg:w-[400px] object-contain z-10"
+            />
+          </div>
+          <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none px-4">
+            <div className="text-center text-gray-900 bg-white/20 backdrop-blur-sm rounded-xl py-3 px-6 max-w-[90%] sm:max-w-[80%] shadow-md border border-gray-100">
+              <p className="text-3xl sm:text-lg md:text-2xl lg:text-4xl font-bold leading-tight">
+                All things back to school
+              </p>
+              <p className="text-sm sm:text-base text-gray-700 mt-1.5">
+                Shop now and save big!
+              </p>
+            </div>
+          </div>
+        </div> */}
+        {/* Hero Section */}
+        <motion.section
+          className="relative w-full py-8 mt-20 mx-auto flex flex-col md:flex-row items-center justify-between gap-8 bg-gradient-to-r from-gray-500 to-gray-800 rounded-xl overflow-hidden px-6 md:px-12 text-white"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="relative z-10 max-w-2xl">
+            <motion.h1
+              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.2 }}
+            >
+              Your Wishlist
+            </motion.h1>
+            <motion.p
+              className="text-lg md:text-xl mb-6 text-gray-300"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.4 }}
+            >
+              Choose the most convenient way to get in touch with your Wishlist
+            </motion.p>
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="flex items-center gap-2 text-sm md:text-base bg-white/10 rounded-full px-4 py-2 w-fit"
+            >
+              <Clock className="w-4 h-4" />
+              <span>Average response time: 2 hours</span>
+            </motion.div>
+          </div>
+          <motion.img
+            src={IMAGES.DISCOUNTS}
+            alt="Support team"
+            className="relative z-10 h-48 md:h-64 lg:h-80 object-contain"
+            initial={{ x: 50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          />
+        </motion.section>
+      </div>
       <main className="w-full mx-auto max-w-screen-2xl px-4 sm:px-6 md:px-10 py-10">
         <div className="mx-auto">
           <div className="text-center py-10">

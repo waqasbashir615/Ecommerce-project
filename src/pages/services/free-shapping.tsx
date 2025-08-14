@@ -1,10 +1,11 @@
-import { Truck, CheckCircle } from "lucide-react";
+import { Truck, CheckCircle, Clock } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion, type Variants } from "framer-motion";
 import GenBreadcrumb from "../generic-components/gen-breadcrumb";
 import NavBarTop from "../nav-bar";
 import Footer from "@/components/footer";
+import IMAGES from "@/assets/images";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -84,22 +85,63 @@ const FreeShipping = () => {
     <div className="flex flex-col min-h-screen hide-scrollbar h-screen overflow-y-scroll">
       <NavBarTop />
       <div className="w-full  mx-auto max-w-screen-2xl px-4 sm:px-6 md:px-10 py-10">
+        <div className="mx-auto py-6 lg:pt-12 ">
+          <GenBreadcrumb
+            items={[{ label: "Home", to: "/main" }, { label: "Free Shipping" }]}
+          />
+        </div>
+        {/* Hero Section */}
+        <motion.section
+          className="relative w-full py-8 md:py-12 mx-auto flex flex-col md:flex-row items-center justify-between gap-8 bg-gradient-to-r from-gray-500 to-gray-800 rounded-xl overflow-hidden px-6 md:px-12 text-white"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="relative z-10 max-w-2xl">
+            <motion.h1
+              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.2 }}
+            >
+              We’re Here to Help and Ship for Free
+            </motion.h1>
+            <motion.p
+              className="text-lg md:text-xl mb-6 text-gray-300"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.4 }}
+            >
+              Our support team is ready to assist you and make sure your free
+              shipping experience is seamless.
+            </motion.p>
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="flex items-center gap-2 text-sm md:text-base bg-white/10 rounded-full px-4 py-2 w-fit"
+            >
+              <Clock className="w-4 h-4" />
+              <span>Average response time: 2 hours</span>
+            </motion.div>
+          </div>
+          <motion.img
+            src={IMAGES.SHIPING}
+            alt="Support team"
+            className="relative z-10 h-48 md:h-64 lg:h-80 object-contain"
+            initial={{ x: 50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          />
+        </motion.section>
         <motion.section
           initial="hidden"
           animate="visible"
           variants={containerVariants}
           className="w-full text-center pb-20"
         >
-          <div className="mx-auto py-10  sm:py-16  md:py-16  lg:py-20 ">
-            <GenBreadcrumb
-              items={[
-                { label: "Home", to: "/main" },
-                { label: "Free Shipping" },
-              ]}
-            />
-          </div>
           <motion.div variants={fadeIn("up")}>
-            <Truck className="w-16 h-16 mx-auto text-primary mb-6" />
+            <Truck className="w-16 h-16 mx-auto text-primary my-6" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Free <span className="text-primary">Shipping</span> Nationwide
             </h1>
@@ -109,6 +151,7 @@ const FreeShipping = () => {
             </p>
           </motion.div>
         </motion.section>
+
         <section className="mx-auto py-20 bg-white">
           <div className="">
             <motion.h2

@@ -208,18 +208,18 @@ const PremiumCollection = () => {
                     <span className="text-gray-800 font-medium">
                       {product.price}
                     </span>
-                      <div className="border border-black rounded-lg p-1 hover:bg-black cursor-pointer">
-                    <Button
-                      size="sm"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleAddToCart(product);
-                      }}
-                      className="bg-black hover:bg-black text-white"
-                    >
-                      Add to Cart
-                    </Button>
-                  </div>
+                    <div className="border border-black rounded-lg p-1 hover:bg-black cursor-pointer">
+                      <Button
+                        size="sm"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleAddToCart(product);
+                        }}
+                        className="bg-black hover:bg-black text-white"
+                      >
+                        Add to Cart
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -244,7 +244,7 @@ const PremiumCollection = () => {
                     sliderInstance.current?.moveToIdx(slideIndex);
                     stopAutoPlay();
                   }}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  className={`w-3 h-2 rounded-full transition-all duration-300 ${
                     isActive
                       ? "bg-black scale-125 w-6"
                       : "bg-gray-300 hover:bg-gray-400"
